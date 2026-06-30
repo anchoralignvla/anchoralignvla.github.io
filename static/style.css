@@ -726,3 +726,9 @@ hr {
 /* Author names are links: keep them blue (link affordance) despite the orange theme */
 .authors a { color: #1d4ed8; }
 .authors a:hover { color: #1e40af; text-decoration: underline; }
+
+/* Hero action buttons */
+.hero-btns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 16px 0 4px; }
+.hero-btns .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; background: var(--surface); color: var(--fg); border: 1px solid var(--line); font-size: 15px; font-weight: 600; transition: background .12s, border-color .12s, color .12s, transform .12s, box-shadow .12s; }
+.hero-btns a.btn:hover { background: var(--accent-light); border-color: var(--accent); color: var(--accent); text-decoration: none; transform: translateY(-1px); box-shadow: var(--shadow); }
+.hero-btns .btn-disabled { opacity: .5; cursor: not-allowed; }
