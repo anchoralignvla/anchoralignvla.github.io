@@ -6,8 +6,8 @@
   --line:    #e5e7eb;
   --bg:      #ffffff;
   --surface: #f9fafb;
-  --accent:  #1d4ed8;
-  --accent-light: #eff6ff;
+  --accent:  #f97316;
+  --accent-light: #fff7ed;
   --good:    #15803d;
   --good-bg: #f0fdf4;
   --bad:     #b91c1c;
@@ -720,5 +720,5 @@ hr {
   .carousel { padding: 14px 48px 48px; }
 }
 
-/* Side-nav index accent: light orange (scoped to the sidebar only) */
-.sidenav { --accent: #f97316; --accent-light: #fff7ed; }
+/* Method-figure video: show the full ultra-wide frame, no 16:9 crop */
+.fig video.fig-vid { aspect-ratio: auto; height: auto; object-fit: contain; background: transparent; border: 1px solid var(--line); box-shadow: var(--shadow); }
