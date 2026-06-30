@@ -722,3 +722,7 @@ hr {
 
 /* Method-figure video: show the full ultra-wide frame, no 16:9 crop */
 .fig video.fig-vid { aspect-ratio: auto; height: auto; object-fit: contain; background: transparent; border: 1px solid var(--line); box-shadow: var(--shadow); }
+
+/* Author names are links: keep them blue (link affordance) despite the orange theme */
+.authors a { color: #1d4ed8; }
+.authors a:hover { color: #1e40af; text-decoration: underline; }
