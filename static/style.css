@@ -719,3 +719,6 @@ hr {
   .pair-grid, .grid-2x3 { grid-template-columns: 1fr; }
   .carousel { padding: 14px 48px 48px; }
 }
+
+/* Side-nav index accent: light orange (scoped to the sidebar only) */
+.sidenav { --accent: #f97316; --accent-light: #fff7ed; }
