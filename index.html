@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Anchor-Align: Training VLAs with Vision-Language Anchoring and Language-Action Alignment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+<aside class="sidenav" id="sidenav" aria-label="Section navigation">
+  <div class="sidenav-body">
+  <div class="sidenav-title">Anchor-Align</div>
+  <a href="#demo">Presentation</a>
+  <a href="#range">Showcase</a>
+  <a href="#abstract">Abstract</a>
+  <a href="#method">Method</a>
+  <div class="sidenav-cat">Real World</div>
+  <a href="#realworld" class="top">Real World</a>
+  <div class="sub-links">
+    <a class="sub" href="#rw-semantic">&middot; 🎨 Semantic Perturbation</a>
+    <a class="sub" href="#rw-mugplate">&middot; 🔀 Spatial Rearrangement</a>
+    <a class="sub" href="#rw-clutter">&middot; 🧺 Cluttered Scene</a>
+    <a class="sub" href="#rw-compositional">&middot; 🧩 Compositional Object-Layout</a>
+  </div>
+  <div class="sidenav-cat">Simulation</div>
+  <a href="#liberoplus" class="top">LIBERO-Plus</a>
+  <div class="sub-links">
+    <div class="sub-group">OOD axes</div>
+    <a class="sub" href="#lp-background_textures">&middot; 🖼️ Background texture</a>
+    <a class="sub" href="#lp-camera_viewpoints">&middot; 📷 Camera viewpoint</a>
+    <a class="sub" href="#lp-language_instructions">&middot; 💬 Language instruction</a>
+    <a class="sub" href="#lp-light_conditions">&middot; 💡 Lighting</a>
+    <a class="sub" href="#lp-objects_layout">&middot; 📦 Object layout</a>
+    <a class="sub" href="#lp-robot_initial_states">&middot; 🦾 Robot initial state</a>
+  </div>
+  <a href="#liberopro" class="top">LIBERO-Pro</a>
+  <div class="sub-links">
+    <div class="sub-group">OOD axes</div>
+    <a class="sub" href="#liberopro">&middot; 🔄 Object</a>
+    <a class="sub" href="#positionswap">&middot; ↔️ Position-Swap</a>
+  </div>
+  <a href="#bibtex">BibTeX</a>
+  </div>
+</aside>
+
+<header class="hero">
+<div class="hero-inner">
+  <h1 class="title">Training VLAs with Vision-Language Anchoring<br>and Language-Action Alignment</h1>
+  <p class="venue">Under Review</p>
+  <p class="authors"><span class="author">Anonymous Authors</span></p>
+</div>
+</header>
+
+<hr>
+
+<section id="demo" class="section">
+  <h2>Presentation</h2>
+  <video class="presentation-video" controls playsinline preload="metadata">
+    <source src="static/videos/presentation_overview.mp4" type="video/mp4">
+  </video>
+  <div class="demo-grid">
+    <video controls muted playsinline preload="metadata">
+      <source src="static/videos/demo_simulation.mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
+
+<hr>
+
+<section id="range" class="section">
+  <h2>Anchor-Align in Action</h2>
+  <div class="marquee-wrap"><div class="marquee"><div class="marquee-track"><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/realworld/semantic_pink_mug/align.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/marquee/sim_bbq.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/realworld/compositional_broccoli/align_trial1.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/marquee/sim_calvin1.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/realworld/clutter_evals/clutter_anch_17500/trial2_yellow_bp.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/marquee/sim_posswap.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/realworld/semantic_pink_mug/align2.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/marquee/sim_alphabet.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/realworld/compositional_broccoli/align_trial7.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/marquee/sim_lighting.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/realworld/clutter_evals/clutter_anch_17500/trial6_red_bp.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/marquee/sim_cream.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/marquee/sim_calvin2.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/realworld/semantic_pink_mug/align.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/marquee/sim_bbq.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/realworld/compositional_broccoli/align_trial1.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/marquee/sim_calvin1.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/realworld/clutter_evals/clutter_anch_17500/trial2_yellow_bp.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/marquee/sim_posswap.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/realworld/semantic_pink_mug/align2.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/marquee/sim_alphabet.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/realworld/compositional_broccoli/align_trial7.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/marquee/sim_lighting.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/realworld/clutter_evals/clutter_anch_17500/trial6_red_bp.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/marquee/sim_cream.mp4"></video><video class="vid" muted loop playsinline preload="none" data-speed="1.5" data-src="static/videos/marquee/sim_calvin2.mp4"></video></div></div><button class="marquee-btn prev" aria-label="Scroll left">&#8592;</button><button class="marquee-btn next" aria-label="Scroll right">&#8594;</button></div>
+  <p class="marquee-note">UFactory xArm7 videos show real-world <strong>Anchor-Align</strong> rollouts.<br>Simulation videos show <strong>Anchor-Align</strong> policies (LIBERO-Pro, LIBERO-Plus, LIBERO and CALVIN).</p>
+</section>
+
+<hr>
+
+<section id="abstract" class="section">
+  <h2>OOD generalization with Anchor-Align</h2>
+  <p>
+    Behavior Cloning (BC) on expert demonstrations has become the standard recipe for
+    Vision-Language-Action (VLA) models, but we find it systematically erases the semantic
+    representations that make VLMs worth adapting: visual-reasoning accuracy collapses from
+    36.4% to 2.3% within 10K steps, and co-training on web image-text data, the field's
+    standard remedy, scores 0% on OOD evaluations. We further find that VLA language and
+    action heads are never jointly trained on the same robot observation, leaving co-trained
+    VLAs with at most 20.9% cross-head alignment, a failure invisible to standard benchmarks.
+  </p>
+  <p>
+    We address both by adding two objectives to Standard BC, using supervision already
+    present in the demonstrations: a frozen VLM anchor prevents BC from overwriting pretrained
+    representations, and converting action targets into language directions co-supervises both
+    heads on the same robot observation. <strong>Anchor-Align</strong> is evaluated across OOD
+    generalization (LIBERO-Pro, LIBERO-Plus), long-horizon control (CALVIN), and a physical
+    xArm7 robot, under both regression and flow-matching action heads. It nearly doubles
+    real-robot task success (28.3% to 54.2%), lifts Position-Swap from 2.3% to 22.6%, and
+    correctly picks the pink mug when BC defaults to green, suggesting VLM semantics and BC
+    finetuning are not fundamentally at odds.
+  </p>
+</section>
+
+<hr>
+
+<section id="method" class="section">
+  <h2>Method overview</h2>
+  <figure class="fig">
+    <img src="static/images/main_fig.png" alt="Method diagram">
+    <figcaption>
+      Anchor-Align jointly trains continuous action prediction with Action-Aligned Language Targets (A2LT)
+      while distilling the policy&rsquo;s hidden states toward a frozen pretrained anchor.
+    </figcaption>
+  </figure>
+</section>
+
+<hr>
+
+<section id="realworld" class="section">
+  <h2>Real-world generalization (UFactory xArm7)</h2>
+  <p>
+    We deploy <strong>Anchor-Align</strong> on a real UFactory xArm7 manipulation setup and
+    evaluate observation-grounded generalization rather than memorization of a single tabletop
+    layout:
+  </p>
+  <ol class="regimes">
+    <li><strong>Semantic Perturbation</strong>: the policy must pick up the pink mug despite being trained only to pick and place the green mug, tested across varied layouts of the target, mugs, and distractor objects.</li>
+    <li><strong>Spatial Rearrangement</strong>: the target object, surrounding objects, and distractors are relocated.</li>
+    <li><strong>Cluttered Scene</strong>: additional distractor objects are added and the policy must select the object specified by language.</li>
+    <li><strong>Compositional Object-Layout</strong>: object placement and object orientation are jointly changed.</li>
+  </ol>
+  <p>
+    For Spatial Rearrangement, Compositional Object-Layout, and Semantic Perturbation, every
+    evaluation tests a layout that never appeared in the training data, making these regimes more
+    challenging than the LIBERO-Pro position swap.
+  </p>
+
+  <figure class="fig">
+    <img src="static/images/realworld_results.png" alt="Real-world generalization success rates across conditions and backbones">
+    <figcaption class="big-cap">
+      <strong>Real-world testing under different backbones and different generalization setups.</strong> Success rates
+      across the three generalization conditions for two distinct backbones. Anchor-Align
+      improves generalization on both: with the Prismatic Qwen2.5-0.5B backbone, mean success
+      rises markedly, and with the architecturally distinct StarVLA backbone, every condition
+      improves. Right
+      (pink-mug OOD, trained only on the green mug): the Standard BC baseline collapses to its
+      training-time green-mug prior, picking the wrong (green) mug in 90% of trials and placing it in 30%,
+      while Anchor-Align follows the &ldquo;pink mug&rdquo; instruction, picking the pink mug in
+      100% of trials and placing it on the plate in 40%.
+    </figcaption>
+  </figure>
+
+  
+
+
+
+  <h3 id="rw-semantic" class="sub">🎨 Semantic Perturbation (pink-mug OOD)</h3>
+<p class="caption">Trained only on the green mug, the policy is tested with a new instruction referring to the pink mug. This probes whether the policy uses the preserved VLM color concept under a new instruction instead of defaulting to the training object. The Standard BC baseline collapses to its training-time green-mug prior, while Anchor-Align follows the instruction and picks the pink mug.</p>
+<div class="grid grid-pairs">
+
+        <div class="pair">
+          <div class="pair-title">Pink-mug OOD</div>
+          <p class="task-prompt"><span class="prompt-label">Task prompt:</span> &ldquo;Pick up the pink mug and place it on the plate.&rdquo;</p>
+          <div class="pair-grid setup-quad rw">
+            <figure><figcaption class="setup-cap">Train setup</figcaption><img loading="lazy" src="static/images/rw_mug_train.png" alt="Train setup: green-mug scene"></figure>
+            <figure><figcaption class="setup-cap">Test setup</figcaption><img loading="lazy" src="static/images/rw_semantic_test.png" alt="Test setup: pink-mug Anchor-Align rollout"></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/semantic_pink_mug/baseline.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Same VLA with Anchor-Align (ours)</figcaption>
+              <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/semantic_pink_mug/align.mp4"></video>
+            </figure>
+          </div>
+        </div>
+</div>
+<h4 class="evalh ours">Anchor-Align across more scene variations</h4>
+<div class="grid grid-2x3">
+<figure class="single-vid"><figcaption class="single-caption">Spatial Arrangement 2</figcaption><video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/semantic_pink_mug/align2.mp4"></video></figure>
+<figure class="single-vid"><figcaption class="single-caption">Spatial Arrangement 3</figcaption><video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/semantic_pink_mug/align3.mp4"></video></figure>
+<figure class="single-vid"><figcaption class="single-caption">Spatial Arrangement 4</figcaption><video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/semantic_pink_mug/align4.mp4"></video></figure>
+<!-- extra pink-mug clips, hidden for now (uncomment to restore Spatial Arrangement 5-6):
+<figure class="single-vid"><figcaption class="single-caption">Spatial Arrangement 5</figcaption><video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/semantic_pink_mug/align6.mp4"></video></figure>
+<figure class="single-vid"><figcaption class="single-caption">Spatial Arrangement 6</figcaption><video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/semantic_pink_mug/align7.mp4"></video></figure>
+<figure class="single-vid"><figcaption class="single-caption">Spatial Arrangement 7</figcaption><video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/semantic_pink_mug/align9.mp4"></video></figure>
+-->
+</div>
+<h3 id="rw-mugplate" class="sub">🔀 Spatial Rearrangement</h3>
+<p class="caption">Standard BC progressively erodes the VLM&rsquo;s pretrained color semantics. Faced with a scene containing multiple mugs, the baseline can no longer reliably distinguish objects by color and grasps the wrong one. Anchor-Align prevents this erosion via Vision-Language Anchoring, retaining color grounding throughout finetuning and consistently picking the correct target.</p>
+<div class="grid grid-pairs">
+        <div class="pair">
+          <p class="task-prompt"><span class="prompt-label">Task prompt:</span> &ldquo;Pick up the green mug and place it on the plate.&rdquo;</p>
+          <div class="pair-grid setup-quad rw">
+            <figure><figcaption class="setup-cap">Train setup</figcaption><img loading="lazy" src="static/images/rw_mug_train.png" alt="Train setup: mug-plate scene"></figure>
+            <figure><figcaption class="setup-cap">Test setup</figcaption><img loading="lazy" src="static/images/rw_spatial_test.png" alt="Test setup: rearranged green-mug rollout"></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/evals6_mug_plate/baseline_24500/trial6.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Same VLA with Anchor-Align (ours)</figcaption>
+              <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/evals6_mug_plate/align_25k/trial7.mp4"></video>
+            </figure>
+          </div>
+        </div>
+<!-- Second example temporarily removed
+        <div class="pair">
+          <p class="task-prompt"><span class="prompt-label">Task prompt:</span> &ldquo;Pick up the green mug and place it on the plate.&rdquo;</p>
+          <div class="pair-grid setup-quad rw">
+            <figure><figcaption class="setup-cap">Train setup</figcaption><img loading="lazy" src="static/images/rw_mug_train.png" alt="Train setup: mug-plate scene"></figure>
+            <figure><figcaption class="setup-cap">Test setup</figcaption><img loading="lazy" src="static/images/rw_spatial_test.png" alt="Test setup: rearranged green-mug rollout"></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/evals5_mug_plate/baseline_24500/trial3.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Same VLA with Anchor-Align (ours)</figcaption>
+              <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/evals5_mug_plate/align_25k/trial5.mp4"></video>
+            </figure>
+          </div>
+        </div>
+-->
+</div>
+<h4 class="evalh ours">Anchor-Align across more scene variations</h4>
+<div class="grid grid-2x3">
+<figure class="single-vid"><figcaption class="single-caption">Arrangement 1</figcaption><video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/mugplate_align60k/trial15.mp4"></video></figure>
+<figure class="single-vid"><figcaption class="single-caption">Arrangement 2</figcaption><video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/mugplate_align60k/trial14.mp4"></video></figure>
+<figure class="single-vid"><figcaption class="single-caption">Arrangement 3</figcaption><video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/mugplate_align60k/trial16.mp4"></video></figure>
+</div>
+<h3 id="rw-clutter" class="sub">🧺 Cluttered Scene</h3>
+<p class="caption">Additional distractor objects are added and the policy must select the object specified by language. We show one representative Anchor-Align rollout for each of the three target objects.</p>
+<div class="clutter-row">
+  <div class="clutter-col">
+    <h4 id="rw-clutter-yellow_bp" class="evalh">Target object: Yellow bell pepper</h4>
+    <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/clutter_evals/clutter_anch_17500/trial2_yellow_bp.mp4"></video>
+  </div>
+  <div class="clutter-col">
+    <h4 id="rw-clutter-pineapple" class="evalh">Target object: Pineapple</h4>
+    <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/clutter_evals/clutter_anch_17500/trial5_pineapple.mp4"></video>
+  </div>
+  <div class="clutter-col">
+    <h4 id="rw-clutter-red_bp" class="evalh">Target object: Red bell pepper</h4>
+    <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/clutter_evals/clutter_anch_17500/trial6_red_bp.mp4"></video>
+  </div>
+</div>
+<h3 id="rw-compositional" class="sub">🧩 Compositional Object-Layout</h3>
+<p class="caption">Object placement and object orientation are jointly changed, so every evaluation is out-of-distribution. The Standard BC baseline drifts toward a memorized motion, while Anchor-Align stays grounded in the current observation.</p>
+<div class="grid grid-pairs">
+
+        <div class="pair">
+          <div class="pair-title">Comparison between Standard BC and Anchor-Align</div>
+          <p class="task-prompt"><span class="prompt-label">Task prompt:</span> &ldquo;Pick up the broccoli and place it on the plate.&rdquo;</p>
+          <div class="pair-grid setup-quad rw">
+            <figure><figcaption class="setup-cap">Train setup</figcaption><img loading="lazy" src="static/images/rw_compositional_train.png" alt="Train setup: object layout seen during training"></figure>
+            <figure><figcaption class="setup-cap">Test setup</figcaption><img loading="lazy" src="static/images/rw_compositional_test.png" alt="Test setup: recomposed-layout broccoli rollout"></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/compositional_broccoli/pair_baseline.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Same VLA with Anchor-Align (ours)</figcaption>
+              <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/compositional_broccoli/pair_align.mp4"></video>
+            </figure>
+          </div>
+        </div>
+</div>
+<h4 id="rw-compositional-gallery" class="evalh ours">Anchor-Align across more scene variations</h4>
+<div class="vid-box">
+<div class="grid grid-2x3">
+<figure class="bare-vid"><video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/compositional_broccoli/align_trial1.mp4"></video></figure>
+<figure class="bare-vid"><video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/compositional_broccoli/align_trial4.mp4"></video></figure>
+<figure class="bare-vid"><video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/compositional_broccoli/align_trial7.mp4"></video></figure>
+<figure class="bare-vid"><video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/compositional_broccoli/align_trial10.mp4"></video></figure>
+<figure class="bare-vid"><video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/compositional_broccoli/align_trial12.mp4"></video></figure>
+<figure class="bare-vid"><video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/compositional_broccoli/align_trial16.mp4"></video></figure>
+</div>
+</div>
+
+</section>
+
+<hr>
+
+<section id="liberoplus" class="section">
+  <h2>LIBERO-Plus OOD generalization</h2>
+  <p class="caption">LIBERO-Plus probes perceptual robustness across seven independent OOD axes; we show six of them here. For each axis we pair the Standard BC baseline (failure) with Anchor-Align (success) on the <em>same</em> initial condition.</p>
+<h3 id="lp-background_textures" class="sub">🖼️ Background texture shifts</h3>
+<div class="carousel" data-noadvance>
+<div class="carousel-track">
+<div class="carousel-slide active">
+<figcaption class="carousel-caption">Put the bowl on the plate.<span class="carousel-counter">1/3</span></figcaption>
+<div class="pair-grid setup-quad">
+            <figure><figcaption class="setup-cap">Train setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid125_standard.png" alt="Train setup"></figure>
+            <figure><figcaption class="setup-cap">Test setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid125_perturbed.png" alt="Test setup"></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/background_textures/action_only_FAIL/Goalplus--tid125--put_the_bowl_on_the_plate_tb_19--FAIL.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Anchor-Align (ours)</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/background_textures/anchor_align_SUCCESS/Goalplus--tid125--put_the_bowl_on_the_plate_tb_19--SUCCESS.mp4"></video>
+            </figure>
+          </div>
+</div>
+<div class="carousel-slide">
+<figcaption class="carousel-caption">Pick up the black bowl in the top drawer of the wooden cabinet and place it on the plate.<span class="carousel-counter">2/3</span></figcaption>
+<div class="pair-grid setup-quad">
+            <figure><figcaption class="setup-cap">Train setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid79_standard.png" alt="Train setup"></figure>
+            <figure><figcaption class="setup-cap">Test setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid79_perturbed.png" alt="Test setup"></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/background_textures/action_only_FAIL/Spatialplus--tid79--pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabin--FAIL.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Anchor-Align (ours)</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/background_textures/anchor_align_SUCCESS/Spatialplus--tid79--pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabin--SUCCESS.mp4"></video>
+            </figure>
+          </div>
+</div>
+<div class="carousel-slide">
+<figcaption class="carousel-caption">Put the bowl on top of the cabinet.<span class="carousel-counter">3/3</span></figcaption>
+<div class="pair-grid setup-quad">
+            <figure><figcaption class="setup-cap">Train setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid144_standard.png" alt="Train setup"></figure>
+            <figure><figcaption class="setup-cap">Test setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid144_perturbed.png" alt="Test setup"></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/background_textures/action_only_FAIL/Goalplus--tid144--put_the_bowl_on_top_of_the_cabinet_table_9--FAIL.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Anchor-Align (ours)</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/background_textures/anchor_align_SUCCESS/Goalplus--tid144--put_the_bowl_on_top_of_the_cabinet_table_9--SUCCESS.mp4"></video>
+            </figure>
+          </div>
+</div>
+</div>
+<button class="carousel-btn prev" aria-label="Previous">&#8592;</button>
+<button class="carousel-btn next" aria-label="Next">&#8594;</button>
+<div class="carousel-dots"><button class="dot active" data-idx="0" aria-label="Case 1"></button><button class="dot" data-idx="1" aria-label="Case 2"></button><button class="dot" data-idx="2" aria-label="Case 3"></button></div>
+</div>
+<h3 id="lp-camera_viewpoints" class="sub">📷 Camera viewpoint shifts</h3>
+<div class="carousel" data-noadvance>
+<div class="carousel-track">
+<div class="carousel-slide active">
+<figcaption class="carousel-caption">Put both the cream cheese box and the butter in the basket.<span class="carousel-counter">1/2</span></figcaption>
+<div class="pair-grid setup-quad">
+            <figure><figcaption class="setup-cap">Train setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid723_standard.png" alt="Train setup"></figure>
+            <figure><figcaption class="setup-cap">Test setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid723_perturbed.png" alt="Test setup"></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/camera_viewpoints/action_only_FAIL/L10plus--tid723--LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_but--FAIL.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Anchor-Align (ours)</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/camera_viewpoints/anchor_align_SUCCESS/L10plus--tid723--LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_but--SUCCESS.mp4"></video>
+            </figure>
+          </div>
+</div>
+<div class="carousel-slide">
+<figcaption class="carousel-caption">Pick up the book and place it in the back compartment of the caddy.<span class="carousel-counter">2/2</span></figcaption>
+<div class="pair-grid setup-quad">
+            <figure><figcaption class="setup-cap">Train setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid915_standard.png" alt="Train setup"></figure>
+            <figure><figcaption class="setup-cap">Test setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid915_perturbed.png" alt="Test setup"></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/camera_viewpoints/action_only_FAIL/L10plus--tid915--STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compa--FAIL.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Anchor-Align (ours)</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/camera_viewpoints/anchor_align_SUCCESS/L10plus--tid915--STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compa--SUCCESS.mp4"></video>
+            </figure>
+          </div>
+</div>
+</div>
+<button class="carousel-btn prev" aria-label="Previous">&#8592;</button>
+<button class="carousel-btn next" aria-label="Next">&#8594;</button>
+<div class="carousel-dots"><button class="dot active" data-idx="0" aria-label="Case 1"></button><button class="dot" data-idx="1" aria-label="Case 2"></button></div>
+</div>
+<h3 id="lp-language_instructions" class="sub">💬 Language instruction rephrasing</h3>
+<div class="carousel" data-noadvance>
+<div class="carousel-track">
+<div class="carousel-slide active">
+<figcaption class="carousel-caption">Put both the alphabet soup and the tomato sauce in the basket.<span class="carousel-counter">1/2</span></figcaption>
+<div class="pair-grid setup-quad">
+            <figure><figcaption class="setup-cap">Train prompt</figcaption><div class="prompt-tile">&ldquo;put both the alphabet soup and the tomato sauce in the basket&rdquo;</div></figure>
+            <figure><figcaption class="setup-cap">Test prompt</figcaption><div class="prompt-tile">&ldquo;after you finish with the vegetables please put both the alphabet soup and the tomato sauce in the basket&rdquo;</div></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/language_instructions/action_only_FAIL/L10plus--tid1117--LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato--FAIL.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Anchor-Align (ours)</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/language_instructions/anchor_align_SUCCESS/L10plus--tid1117--LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato--SUCCESS.mp4"></video>
+            </figure>
+          </div>
+</div>
+<div class="carousel-slide">
+<figcaption class="carousel-caption">Put the bowl on the plate.<span class="carousel-counter">2/2</span></figcaption>
+<div class="pair-grid setup-quad">
+            <figure><figcaption class="setup-cap">Train prompt</figcaption><div class="prompt-tile">&ldquo;put the bowl on the plate&rdquo;</div></figure>
+            <figure><figcaption class="setup-cap">Test prompt</figcaption><div class="prompt-tile">&ldquo;could i have the bowl placed on top of the plate&rdquo;</div></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/language_instructions/action_only_FAIL/Goalplus--tid1443--put_the_bowl_on_the_plate_language_31_view_0_0_100_0_0_inits--FAIL.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Anchor-Align (ours)</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/language_instructions/anchor_align_SUCCESS/Goalplus--tid1443--put_the_bowl_on_the_plate_language_31_view_0_0_100_0_0_inits--SUCCESS.mp4"></video>
+            </figure>
+          </div>
+</div>
+</div>
+<button class="carousel-btn prev" aria-label="Previous">&#8592;</button>
+<button class="carousel-btn next" aria-label="Next">&#8594;</button>
+<div class="carousel-dots"><button class="dot active" data-idx="0" aria-label="Case 1"></button><button class="dot" data-idx="1" aria-label="Case 2"></button></div>
+</div>
+<h3 id="lp-light_conditions" class="sub">💡 Lighting condition shifts</h3>
+<div class="grid grid-pairs">
+
+        <div class="pair">
+          <div class="pair-title">Put both the alphabet soup and the tomato sauce in the basket.</div>
+          <div class="pair-grid setup-quad">
+            <figure><figcaption class="setup-cap">Train setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid2414_standard.png" alt="Train setup"></figure>
+            <figure><figcaption class="setup-cap">Test setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid2414_perturbed.png" alt="Test setup"></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid" muted playsinline preload="none" controls data-src="static/videos/libero_plus/light_conditions/action_only_FAIL/L10plus--tid2414--LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato--FAIL.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Anchor-Align (ours)</figcaption>
+              <video class="vid" muted playsinline preload="none" controls data-src="static/videos/libero_plus/light_conditions/anchor_align_SUCCESS/L10plus--tid2414--LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato--SUCCESS.mp4"></video>
+            </figure>
+          </div>
+        </div>
+</div>
+<h3 id="lp-objects_layout" class="sub">📦 Object layout perturbations</h3>
+<div class="carousel" data-noadvance>
+<div class="carousel-track">
+<div class="carousel-slide active">
+<figcaption class="carousel-caption">Open the middle drawer of the cabinet.<span class="carousel-counter">1/2</span></figcaption>
+<div class="pair-grid setup-quad">
+            <figure><figcaption class="setup-cap">Train setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid1914_standard.png" alt="Train setup"></figure>
+            <figure><figcaption class="setup-cap">Test setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid1914_perturbed.png" alt="Test setup"></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/objects_layout/action_only_FAIL/Goalplus--tid1914--open_the_middle_drawer_of_the_cabinet_moved_level1_sample3--FAIL.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Anchor-Align (ours)</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/objects_layout/anchor_align_SUCCESS/Goalplus--tid1914--open_the_middle_drawer_of_the_cabinet_moved_level1_sample3--SUCCESS.mp4"></video>
+            </figure>
+          </div>
+</div>
+<div class="carousel-slide">
+<figcaption class="carousel-caption">Put both the alphabet soup and the tomato sauce in the basket.<span class="carousel-counter">2/2</span></figcaption>
+<div class="pair-grid setup-quad">
+            <figure><figcaption class="setup-cap">Train setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid2086_standard.png" alt="Train setup"></figure>
+            <figure><figcaption class="setup-cap">Test setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid2086_perturbed.png" alt="Test setup"></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/objects_layout/action_only_FAIL/L10plus--tid2086--LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato--FAIL.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Anchor-Align (ours)</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/objects_layout/anchor_align_SUCCESS/L10plus--tid2086--LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato--SUCCESS.mp4"></video>
+            </figure>
+          </div>
+</div>
+</div>
+<button class="carousel-btn prev" aria-label="Previous">&#8592;</button>
+<button class="carousel-btn next" aria-label="Next">&#8594;</button>
+<div class="carousel-dots"><button class="dot active" data-idx="0" aria-label="Case 1"></button><button class="dot" data-idx="1" aria-label="Case 2"></button></div>
+</div>
+<h3 id="lp-robot_initial_states" class="sub">🦾 Robot initial-state perturbations</h3>
+<div class="carousel" data-noadvance>
+<div class="carousel-track">
+<div class="carousel-slide active">
+<figcaption class="carousel-caption">Open the middle drawer of the cabinet.<span class="carousel-counter">1/3</span></figcaption>
+<div class="pair-grid setup-quad">
+            <figure><figcaption class="setup-cap">Train setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid299_standard.png" alt="Train setup"></figure>
+            <figure><figcaption class="setup-cap">Test setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid299_perturbed.png" alt="Test setup"></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/robot_initial_states/action_only_FAIL/Goalplus--tid299--open_the_middle_drawer_of_the_cabinet_view_0_0_100_0_0_inits--FAIL.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Anchor-Align (ours)</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/robot_initial_states/anchor_align_SUCCESS/Goalplus--tid299--open_the_middle_drawer_of_the_cabinet_view_0_0_100_0_0_inits--SUCCESS.mp4"></video>
+            </figure>
+          </div>
+</div>
+<div class="carousel-slide">
+<figcaption class="carousel-caption">Push the plate to the front of the stove.<span class="carousel-counter">2/3</span></figcaption>
+<div class="pair-grid setup-quad">
+            <figure><figcaption class="setup-cap">Train setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid514_standard.png" alt="Train setup"></figure>
+            <figure><figcaption class="setup-cap">Test setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid514_perturbed.png" alt="Test setup"></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/robot_initial_states/action_only_FAIL/Goalplus--tid514--push_the_plate_to_the_front_of_the_stove_view_0_0_100_0_0_in--FAIL.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Anchor-Align (ours)</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/robot_initial_states/anchor_align_SUCCESS/Goalplus--tid514--push_the_plate_to_the_front_of_the_stove_view_0_0_100_0_0_in--SUCCESS.mp4"></video>
+            </figure>
+          </div>
+</div>
+<div class="carousel-slide">
+<figcaption class="carousel-caption">Pick up the black bowl between the plate and the ramekin and place it on the plate.<span class="carousel-counter">3/3</span></figcaption>
+<div class="pair-grid setup-quad">
+            <figure><figcaption class="setup-cap">Train setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid262_standard.png" alt="Train setup"></figure>
+            <figure><figcaption class="setup-cap">Test setup</figcaption><img loading="lazy" src="static/images/initial_states/lp_tid262_perturbed.png" alt="Test setup"></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/robot_initial_states/action_only_FAIL/Spatialplus--tid262--pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and--FAIL.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Anchor-Align (ours)</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_plus/robot_initial_states/anchor_align_SUCCESS/Spatialplus--tid262--pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and--SUCCESS.mp4"></video>
+            </figure>
+          </div>
+</div>
+</div>
+<button class="carousel-btn prev" aria-label="Previous">&#8592;</button>
+<button class="carousel-btn next" aria-label="Next">&#8594;</button>
+<div class="carousel-dots"><button class="dot active" data-idx="0" aria-label="Case 1"></button><button class="dot" data-idx="1" aria-label="Case 2"></button><button class="dot" data-idx="2" aria-label="Case 3"></button></div>
+</div>
+</section>
+
+<hr>
+
+<section id="liberopro" class="section">
+  <h2>LIBERO-Pro: Object generalization</h2>
+  <p class="caption">LIBERO-Pro Object Generalization trains the policy on a task with a given object, then at test swaps that object for a new one that can differ in size, shape, color, or other characteristics. On the same episode, Standard BC fails while Anchor-Align succeeds.</p>
+<div class="carousel" data-noadvance>
+<div class="carousel-track">
+<div class="carousel-slide active">
+<figcaption class="carousel-caption">Pick up the alphabet soup and place it in the basket.<span class="carousel-counter">1/3</span></figcaption>
+<div class="pair-grid setup-quad">
+            <figure><figcaption class="setup-cap">Train setup</figcaption><img loading="lazy" src="static/images/initial_states/pro_obj_alphabet_train.png" alt="Train setup"></figure>
+            <figure><figcaption class="setup-cap">Test setup</figcaption><img loading="lazy" src="static/images/initial_states/pro_obj_alphabet_test.png" alt="Test setup"></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_pro/baseline_ep1_FAIL_alphabet_soup.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Anchor-Align (ours)</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_pro/ours_ep1_SUCCESS_alphabet_soup.mp4"></video>
+            </figure>
+          </div>
+</div>
+<div class="carousel-slide">
+<figcaption class="carousel-caption">Pick up the cream cheese and place it in the basket.<span class="carousel-counter">2/3</span></figcaption>
+<div class="pair-grid setup-quad">
+            <figure><figcaption class="setup-cap">Train setup</figcaption><img loading="lazy" src="static/images/initial_states/pro_obj_cream_train.png" alt="Train setup"></figure>
+            <figure><figcaption class="setup-cap">Test setup</figcaption><img loading="lazy" src="static/images/initial_states/pro_obj_cream_test.png" alt="Test setup"></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_pro/baseline_ep54_FAIL_cream_cheese.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Anchor-Align (ours)</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_pro/ours_ep54_SUCCESS_cream_cheese.mp4"></video>
+            </figure>
+          </div>
+</div>
+<div class="carousel-slide">
+<figcaption class="carousel-caption">Pick up the BBQ sauce and place it in the basket.<span class="carousel-counter">3/3</span></figcaption>
+<div class="pair-grid setup-quad">
+            <figure><figcaption class="setup-cap">Train setup</figcaption><img loading="lazy" src="static/images/initial_states/pro_obj_bbq_train.png" alt="Train setup"></figure>
+            <figure><figcaption class="setup-cap">Test setup</figcaption><img loading="lazy" src="static/images/initial_states/pro_obj_bbq_test.png" alt="Test setup"></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_pro/baseline_ep161_FAIL_bbq_sauce.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Anchor-Align (ours)</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-src="static/videos/libero_pro/ours_ep161_SUCCESS_bbq_sauce.mp4"></video>
+            </figure>
+          </div>
+</div>
+</div>
+<button class="carousel-btn prev" aria-label="Previous">&#8592;</button>
+<button class="carousel-btn next" aria-label="Next">&#8594;</button>
+<div class="carousel-dots"><button class="dot active" data-idx="0" aria-label="Object 1"></button><button class="dot" data-idx="1" aria-label="Object 2"></button><button class="dot" data-idx="2" aria-label="Object 3"></button></div>
+</div>
+
+</section>
+
+<hr>
+
+<section id="positionswap" class="section">
+  <h2>↔️ LIBERO-Pro Position-Swap</h2>
+  <p class="caption">LIBERO-Pro Position-Swap trains the policy with the task objects in their original positions and evaluates it after those positions are permuted, so completing the task requires acting on the objects' current locations rather than replaying a memorized trajectory. We pair the same held-out episode under Standard BC (failure) and Anchor-Align (success); each pair is a different task.</p>
+<div class="carousel" data-noadvance>
+<div class="carousel-track">
+<div class="carousel-slide active">
+<figcaption class="carousel-caption">Pick up the black bowl between the plate and the ramekin and place it on the plate.<span class="carousel-counter">1/2</span></figcaption>
+<div class="pair-grid setup-quad">
+            <figure><figcaption class="setup-cap">Train setup</figcaption><img loading="lazy" src="static/images/initial_states/pro_swap_between_train.png" alt="Train setup"></figure>
+            <figure><figcaption class="setup-cap">Test setup</figcaption><img loading="lazy" src="static/images/initial_states/pro_swap_between_test.png" alt="Test setup"></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/libero_position_swap/action_only_finetuning/2026_03_10-16_15_22--episode=10--success=False--task=pick_up_the_black_bowl_between_the_plate_and_the_r.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Anchor-Align (ours)</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/libero_position_swap/anchor_align_finetuning/2026_03_10-16_39_40--episode=10--success=True--task=pick_up_the_black_bowl_between_the_plate_and_the_r.mp4"></video>
+            </figure>
+          </div>
+</div>
+<div class="carousel-slide">
+<figcaption class="carousel-caption">Pick up the black bowl on the ramekin and place it on the plate.<span class="carousel-counter">2/2</span></figcaption>
+<div class="pair-grid setup-quad">
+            <figure><figcaption class="setup-cap">Train setup</figcaption><img loading="lazy" src="static/images/initial_states/pro_swap_onramekin_train.png" alt="Train setup"></figure>
+            <figure><figcaption class="setup-cap">Test setup</figcaption><img loading="lazy" src="static/images/initial_states/pro_swap_onramekin_test.png" alt="Test setup"></figure>
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/libero_position_swap/action_only_finetuning/2026_03_10-16_23_21--episode=6--success=False--task=pick_up_the_black_bowl_on_the_ramekin_and_place_it.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Anchor-Align (ours)</figcaption>
+              <video class="vid carousel-vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/libero_position_swap/anchor_align_finetuning/2026_03_10-16_47_17--episode=6--success=True--task=pick_up_the_black_bowl_on_the_ramekin_and_place_it.mp4"></video>
+            </figure>
+          </div>
+</div>
+</div>
+<button class="carousel-btn prev" aria-label="Previous">&#8592;</button>
+<button class="carousel-btn next" aria-label="Next">&#8594;</button>
+<div class="carousel-dots"><button class="dot active" data-idx="0" aria-label="Case 1"></button><button class="dot" data-idx="1" aria-label="Case 2"></button></div>
+</div>
+
+<!-- Redundant position-swap examples (all look the same as the one shown), kept for reference:
+        <div class="pair">
+          <div class="pair-grid">
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/libero_position_swap/action_only_finetuning/2026_03_10-16_15_22--episode=22--success=False--task=pick_up_the_black_bowl_between_the_plate_and_the_r.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Same VLA with Anchor-Align (ours)</figcaption>
+              <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/libero_position_swap/anchor_align_finetuning/2026_03_10-16_39_40--episode=22--success=True--task=pick_up_the_black_bowl_between_the_plate_and_the_r.mp4"></video>
+            </figure>
+          </div>
+        </div>
+
+        <div class="pair">
+          <div class="pair-grid">
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/libero_position_swap/action_only_finetuning/2026_03_10-16_15_22--episode=34--success=False--task=pick_up_the_black_bowl_between_the_plate_and_the_r.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Same VLA with Anchor-Align (ours)</figcaption>
+              <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/libero_position_swap/anchor_align_finetuning/2026_03_10-16_39_40--episode=34--success=True--task=pick_up_the_black_bowl_between_the_plate_and_the_r.mp4"></video>
+            </figure>
+          </div>
+        </div>
+
+        <div class="pair">
+          <div class="pair-grid">
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/libero_position_swap/action_only_finetuning/2026_03_10-16_15_22--episode=46--success=False--task=pick_up_the_black_bowl_between_the_plate_and_the_r.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Same VLA with Anchor-Align (ours)</figcaption>
+              <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/libero_position_swap/anchor_align_finetuning/2026_03_10-16_39_40--episode=46--success=True--task=pick_up_the_black_bowl_between_the_plate_and_the_r.mp4"></video>
+            </figure>
+          </div>
+        </div>
+
+        <div class="pair">
+          <div class="pair-grid">
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/libero_position_swap/action_only_finetuning/2026_03_10-16_15_22--episode=3--success=False--task=pick_up_the_black_bowl_between_the_plate_and_the_r.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Same VLA with Anchor-Align (ours)</figcaption>
+              <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/libero_position_swap/anchor_align_finetuning/2026_03_10-16_39_40--episode=3--success=True--task=pick_up_the_black_bowl_between_the_plate_and_the_r.mp4"></video>
+            </figure>
+          </div>
+        </div>
+
+        <div class="pair">
+          <div class="pair-grid">
+            <figure>
+              <figcaption class="bad">Standard BC</figcaption>
+              <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/libero_position_swap/action_only_finetuning/2026_03_10-16_15_22--episode=5--success=False--task=pick_up_the_black_bowl_between_the_plate_and_the_r.mp4"></video>
+            </figure>
+            <figure>
+              <figcaption class="good">Same VLA with Anchor-Align (ours)</figcaption>
+              <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/libero_position_swap/anchor_align_finetuning/2026_03_10-16_39_40--episode=5--success=True--task=pick_up_the_black_bowl_between_the_plate_and_the_r.mp4"></video>
+            </figure>
+          </div>
+        </div>
+        -->
+</section>
+
+<hr>
+
+<section id="bibtex" class="section">
+  <h2>BibTeX</h2>
+<pre class="bib">@inproceedings{anonymous2026anchoralign,
+  title  = {Training VLAs with Vision-Language Anchoring and Language-Action Alignment},
+  author = {Anonymous Authors},
+  year   = {2026},
+  note   = {Under review}
+}</pre>
+</section>
+
+<footer class="foot">
+  <p>All identifying information has been removed for anonymous review.</p>
+</footer>
+
+<script src="static/script.js"></script>
+</body>
+</html>
