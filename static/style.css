@@ -799,3 +799,35 @@ hr {
   .res-table { font-size: 14px; }
   .res-table th, .res-table td { padding: 7px 9px; }
 }
+
+/* ─── Table 1 column groups + radar plot grid ───────────────────────────────── */
+.res-table th.grp {
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: .02em;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 4px;
+}
+.res-table th.grp + th.grp { border-left: 1px solid var(--line); }
+
+.res-table th.mean, .res-table td.mean {
+  font-weight: 600;
+  background: rgba(0,0,0,.025);
+}
+.res-table tr.ours td.mean { background: rgba(249,115,22,.12); }
+
+.spider-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+.spider-grid img {
+  width: 100%;
+  border: none;
+  box-shadow: none;
+}
+
+@media (max-width: 760px) {
+  .spider-grid { grid-template-columns: 1fr; gap: 4px; }
+}

@@ -131,6 +131,7 @@
     <a class="sub" href="#liberopro">&middot; 🔄 Object</a>
     <a class="sub" href="#positionswap">&middot; ↔️ Position Swap</a>
   </div>
+  <a href="#results">Results</a>
   <a href="#bibtex">BibTeX</a>
   </div>
 </aside>
@@ -210,58 +211,6 @@
     and effective action learning are not fundamentally at odds.
   </p>
 
-  <h3 class="res-h">Results at a glance</h3>
-
-  <div class="table-wrap">
-    <table class="res-table">
-      <caption>LIBERO success rate (%) across the four standard suites.</caption>
-      <thead>
-        <tr><th scope="col">Method</th><th scope="col">Spatial</th><th scope="col">Object</th><th scope="col">Goal</th><th scope="col">Long</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Diffusion Policy</td><td>78.3</td><td>92.5</td><td>68.3</td><td>50.5</td></tr>
-        <tr><td>&pi;<sub>0</sub>-FAST</td><td>87.0</td><td>63.0</td><td>89.0</td><td>48.0</td></tr>
-        <tr><td>SmolVLA-0.24B</td><td>87.0</td><td>93.0</td><td>88.0</td><td>63.0</td></tr>
-        <tr><td>SmolVLA-2.25B</td><td>93.0</td><td>94.0</td><td>91.0</td><td>77.0</td></tr>
-        <tr><td>OpenVLA-OFT</td><td>94.3</td><td>95.2</td><td>91.7</td><td>86.5</td></tr>
-        <tr><td>MolmoAct</td><td>87.0</td><td>95.4</td><td>87.6</td><td>77.2</td></tr>
-        <tr><td>&pi;<sub>0.5</sub>-KI</td><td>96.6</td><td>97.2</td><td>94.6</td><td>85.8</td></tr>
-        <tr><td>VLA-0</td><td>93.6</td><td>96.0</td><td>95.6</td><td>87.6</td></tr>
-        <tr><td>VLA-Adapter [Frozen]</td><td>89.4</td><td>89.6</td><td>88.0</td><td>84.5</td></tr>
-        <tr><td>VLA-Adapter (standard BC)</td><td>96.0</td><td>99.8</td><td>96.0</td><td>89.0</td></tr>
-        <tr class="ours"><td><strong>Anchor-Align VLA (ours)</strong></td><td><strong>98.4</strong></td><td><strong>100.0</strong></td><td><strong>97.2</strong></td><td><strong>90.8</strong></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="table-wrap">
-    <table class="res-table">
-      <caption>CALVIN ABC&rarr;D long-horizon success rate (%) by chain length, and average rollout length.</caption>
-      <thead>
-        <tr><th scope="col">Method</th><th scope="col">1/5</th><th scope="col">2/5</th><th scope="col">3/5</th><th scope="col">4/5</th><th scope="col">5/5</th><th scope="col">Len</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>UniVLA</td><td>95.5</td><td>85.8</td><td>75.4</td><td>66.9</td><td>56.5</td><td>3.8</td></tr>
-        <tr><td>OpenVLA-OFT</td><td>96.3</td><td>89.1</td><td>82.4</td><td>75.8</td><td>66.5</td><td>4.1</td></tr>
-        <tr><td>OpenHelix</td><td>97.1</td><td>91.4</td><td>82.8</td><td>72.6</td><td>64.1</td><td>4.1</td></tr>
-        <tr><td>VLA-Adapter (standard BC)</td><td>98.3</td><td>94.0</td><td>87.5</td><td>80.0</td><td>73.1</td><td>4.3</td></tr>
-        <tr class="ours"><td><strong>Anchor-Align VLA (ours)</strong></td><td><strong>99.1</strong></td><td><strong>95.8</strong></td><td><strong>90.6</strong></td><td><strong>84.7</strong></td><td><strong>77.9</strong></td><td><strong>4.5</strong></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="table-wrap">
-    <table class="res-table">
-      <caption>OOD robustness on LIBERO-PRO and LIBERO-Plus, success rate (%), mean &plusmn; std over 3 seeds.</caption>
-      <thead>
-        <tr><th scope="col">Method</th><th scope="col">Spatial (Std)</th><th scope="col">Lang. Reph.</th><th scope="col">Object Swap</th><th scope="col">Pos. Swap</th><th scope="col">Plus</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>VLA-Adapter (standard BC)</td><td>93.3 &plusmn; 0.3</td><td>91.1 &plusmn; 0.4</td><td>90.1 &plusmn; 0.5</td><td>2.6 &plusmn; 0.7</td><td>85.3 &plusmn; 0.3</td></tr>
-        <tr class="ours"><td><strong>Anchor-Align VLA (ours)</strong></td><td><strong>97.9 &plusmn; 0.3</strong></td><td><strong>97.1 &plusmn; 0.5</strong></td><td><strong>96.1 &plusmn; 0.4</strong></td><td><strong>23.5 &plusmn; 0.2</strong></td><td><strong>90.5 &plusmn; 0.6</strong></td></tr>
-      </tbody>
-    </table>
-  </div>
 </section>
 
 <hr>
@@ -858,6 +807,50 @@
           </div>
         </div>
         -->
+</section>
+
+<hr>
+
+<section id="results" class="section">
+  <h2>Results at a glance</h2>
+
+  <div class="table-wrap">
+    <table class="res-table">
+      <caption><strong>Table 1.</strong> Success rates (%) on the LIBERO-PRO and LIBERO-Plus benchmarks. Anchor-Align VLA outperforms all baselines on LIBERO-PRO and LIBERO-Plus.</caption>
+      <thead>
+        <tr>
+          <th scope="col" rowspan="2">Method</th>
+          <th scope="colgroup" colspan="4" class="grp">LIBERO-PRO</th>
+          <th scope="colgroup" colspan="8" class="grp">LIBERO-Plus</th>
+        </tr>
+        <tr>
+          <th scope="col">Lang. Reph.</th><th scope="col">Object Swap</th><th scope="col">Pos. Swap</th><th scope="col" class="mean">Mean</th>
+          <th scope="col">Lang. Instr.</th><th scope="col">Bg. Text.</th><th scope="col">Robot Init</th><th scope="col">Cam. View</th><th scope="col">Obj. Layout</th><th scope="col">Light Cond.</th><th scope="col">Sensor Noise</th><th scope="col" class="mean">Mean</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Co-training + KI</td><td>54.0</td><td>77.4</td><td>0.0</td><td class="mean">43.8</td><td>48.0</td><td>82.6</td><td>25.7</td><td>64.6</td><td>65.7</td><td>73.3</td><td>49.0</td><td class="mean">57.1</td></tr>
+        <tr><td>MolmoAct</td><td>77.8</td><td>82.4</td><td>0.0</td><td class="mean">53.4</td><td>79.5</td><td>84.1</td><td>47.4</td><td>10.1</td><td>76.5</td><td>77.4</td><td>53.4</td><td class="mean">60.8</td></tr>
+        <tr><td>OpenVLA-OFT</td><td>74.4</td><td>95.2</td><td>0.0</td><td class="mean">56.5</td><td>81.5</td><td>95.7</td><td>40.3</td><td>94.7</td><td>88.6</td><td>95.5</td><td>28.2</td><td class="mean">74.1</td></tr>
+        <tr><td>VLA-Adapter [Frozen]</td><td>56.0</td><td>73.4</td><td>0.0</td><td class="mean">43.1</td><td>41.5</td><td>70.9</td><td>35.1</td><td>94.4</td><td>62.3</td><td>84.9</td><td>36.2</td><td class="mean">59.9</td></tr>
+        <tr><td>VLA-Adapter</td><td>91.1</td><td>89.6</td><td>2.3</td><td class="mean">61.0</td><td>85.1</td><td>90.7</td><td>52.6</td><td>92.6</td><td>93.2</td><td>93.2</td><td>89.5</td><td class="mean">85.1</td></tr>
+        <tr class="ours"><td><strong>Anchor-Align VLA (ours)</strong></td><td><strong>97.0</strong></td><td><strong>96.2</strong></td><td><strong>22.6</strong></td><td class="mean"><strong>71.9</strong></td><td><strong>87.2</strong></td><td><strong>99.6</strong></td><td><strong>59.1</strong></td><td><strong>96.3</strong></td><td><strong>97.4</strong></td><td><strong>99.0</strong></td><td><strong>96.9</strong></td><td class="mean"><strong>90.3</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <figure class="fig">
+    <div class="spider-grid">
+      <img loading="lazy" src="static/images/fig_object_spider.png" alt="Radar plot for the LIBERO-Object suite comparing Anchor-Align against the standard BC VLA-Adapter baseline across nine evaluation axes">
+      <img loading="lazy" src="static/images/fig_goal_spider.png" alt="Radar plot for the LIBERO-Goal suite comparing Anchor-Align against the standard BC VLA-Adapter baseline across nine evaluation axes">
+      <img loading="lazy" src="static/images/fig_long_spider.png" alt="Radar plot for the LIBERO-Long suite comparing Anchor-Align against the standard BC VLA-Adapter baseline across nine evaluation axes">
+    </div>
+    <figcaption class="big-cap">
+      Each radar plot compares <strong>Anchor-Align</strong> (orange) against the standard BC VLA-Adapter
+      baseline (gray) across nine evaluation axes: two from LIBERO-PRO (Language Rephrase, Object Swap)
+      and seven from LIBERO-Plus. Left to right: LIBERO-Object, LIBERO-Goal, LIBERO-Long.
+    </figcaption>
+  </figure>
 </section>
 
 <hr>
