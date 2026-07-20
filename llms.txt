@@ -1,0 +1,36 @@
+# Anchor-Align: Generalizable VLA Finetuning via Representation Anchoring and Language-Action Alignment
+
+> Anchor-Align is a finetuning method for vision-language-action (VLA) models that prevents behavior cloning from overwriting the pretrained vision-language representations that support visual and semantic generalization. It adds two objectives to standard BC: Vision-Language Anchoring (layer-wise distillation from a frozen VLM copy) and Language-Action Alignment (joint language and action prediction on the same robot observation). Real-robot success improves from 28% to 54% and 37% to 60% across two VLA architectures on a physical xArm7, with consistent gains on LIBERO-PRO, LIBERO-Plus, and CALVIN.
+
+Paper: arXiv:2607.13429 (cs.RO, cs.CV), 15 July 2026.
+Authors: Dwip Dalal, Shivansh Patel, Chahit Jain, Jeonghwan Kim, Utkarsh Mishra, Alex Baratian, Hyeonjeong Ha, Heng Ji, Svetlana Lazebnik, Unnat Jain (University of Illinois Urbana-Champaign; Texas A&M University; University of California, Irvine).
+
+## Problem addressed
+
+- Behavior cloning finetuning of a pretrained VLM progressively overwrites pretrained representations, degrading out-of-distribution and semantic generalization in VLA policies.
+- Co-training on web image-text data does not fix this, because language and action losses are applied to separate observations, which leaves language-action misalignment.
+- Standard manipulation benchmarks do not expose this misalignment.
+
+## Method
+
+- Vision-Language Anchoring: distills layer-wise hidden representations from a frozen copy of the pretrained VLM into the policy during finetuning, preventing representation drift.
+- Language-Action Alignment: converts each continuous action target into a discrete motion-direction label and trains language and action prediction jointly on the same robot observation.
+
+## Links
+
+- [Project page](https://anchoralignvla.github.io/): videos, real-world and simulation results.
+- [Paper (arXiv abstract)](https://arxiv.org/abs/2607.13429)
+- [Paper (PDF)](https://arxiv.org/pdf/2607.13429)
+- [Code (GitHub)](https://github.com/dwipddalal/Anchor-Align): training, evaluation, and reproduction scripts.
+- [Pretrained checkpoints (Hugging Face)](https://huggingface.co/Dwipz/Anchor-Align)
+
+## Citation
+
+```bibtex
+@article{dalal2026anchoralign,
+  title   = {Generalizable VLA Finetuning via Representation Anchoring and Language-Action Alignment},
+  author  = {Dalal, Dwip and Patel, Shivansh and Jain, Chahit and Kim, Jeonghwan and Mishra, Utkarsh and Baratian, Alex and Ha, Hyeonjeong and Ji, Heng and Lazebnik, Svetlana and Jain, Unnat},
+  journal = {arXiv preprint arXiv:2607.13429},
+  year    = {2026}
+}
+```

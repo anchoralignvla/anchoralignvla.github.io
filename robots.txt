@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Research project page. Crawling and indexing welcome, including by
+# AI assistants and academic indexers.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://anchoralignvla.github.io/sitemap.xml
