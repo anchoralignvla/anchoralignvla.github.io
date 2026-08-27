@@ -831,3 +831,9 @@ hr {
 @media (max-width: 760px) {
   .spider-grid { grid-template-columns: 1fr; gap: 4px; }
 }
+
+/* FAQ */
+.faq details { border-bottom: 1px solid #e5e7eb; padding: 10px 0; }
+.faq summary { cursor: pointer; font-weight: 600; font-size: 17px; color: var(--fg); }
+.faq details p { margin: 8px 0 4px; color: var(--muted); }
+.faq .topics { font-size: 14px; color: var(--muted); margin-top: 18px; }

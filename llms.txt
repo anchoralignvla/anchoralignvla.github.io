@@ -16,6 +16,20 @@ Authors: Dwip Dalal, Shivansh Patel, Chahit Jain, Jeonghwan Kim, Utkarsh Mishra,
 - Vision-Language Anchoring: distills layer-wise hidden representations from a frozen copy of the pretrained VLM into the policy during finetuning, preventing representation drift.
 - Language-Action Alignment: converts each continuous action target into a discrete motion-direction label and trains language and action prediction jointly on the same robot observation.
 
+## Topics
+
+vision-language-action (VLA) models; robot learning; robot manipulation; continual learning; catastrophic forgetting; representation drift; out-of-distribution (OOD) generalization for robotics; language-action alignment; language and action prediction; behavior cloning; imitation learning; knowledge distillation; VLM finetuning; OpenVLA; StarVLA; Prismatic Qwen2.5-0.5B; UFactory xArm7; LIBERO-PRO; LIBERO-Plus; CALVIN.
+
+## FAQ (short)
+
+- **What is Anchor-Align?** Anchor-Align is a finetuning method for vision-language-action (VLA) models. It adds two losses to standard behavior cloning (BC). Vision-Language Anchoring keeps the pretrained VLM representations intact. Language-Action Alignment trains language and action prediction on the same robot observation. The result is a VLA policy that generalizes better to new scenes, objects and instructions.
+- **Why does behavior cloning hurt generalization in VLA models?** BC finetuning updates the VLM weights from action losses only. Over training, it progressively overwrites the pretrained representations that support visual and semantic generalization. This is a form of catastrophic forgetting. The policy still succeeds on the training distribution, so standard manipulation benchmarks do not expose the loss.
+- **How does Anchor-Align relate to continual learning and catastrophic forgetting?** Anchor-Align treats VLA finetuning as a continual learning problem: the model must learn actions without forgetting its pretrained vision-language knowledge. Vision-Language Anchoring distills layer-wise hidden representations from a frozen copy of the pretrained VLM into the trainable policy during finetuning. This prevents representation drift. Unlike co-training, it does not add web image-text data.
+- **What is language-action alignment?** In standard BC, only the action head gets supervision. The language output can drift, so the same model can say “left” while its action head moves up on the same observation. Language-Action Alignment converts each action target into a discrete motion-direction label (up, down, left, right, forward, backward). The model then predicts this label and the action on the same observation, so language and action prediction agree.
+- **Which robots, VLA architectures and benchmarks does Anchor-Align use?** Real world: a UFactory xArm7 arm with two VLA architectures, a Prismatic Qwen2.5-0.5B VLA and StarVLA. Real-robot success rises from 28% to 54% and from 37% to 60%. Simulation: LIBERO-PRO (object and position generalization), LIBERO-Plus (seven perceptual perturbation axes) and CALVIN (long-horizon control).
+- **Does Anchor-Align improve out-of-distribution generalization for robot manipulation?** Yes. On LIBERO-PRO position swap, Anchor-Align reaches 22.6% versus 2.3% for standard BC. On LIBERO-Plus, mean success rises from 85.1% to 90.3%. On the xArm7, the policy picks the correct mug by color, handles new layouts and clutter, and follows the instruction when the object orientation changes.
+- **Where are the paper, code and checkpoints?** The paper is arXiv:2607.13429. The inference and evaluation code is at github.com/dwipddalal/Anchor-Align. Checkpoints for LIBERO-Spatial, LIBERO-Object, LIBERO-Goal and LIBERO-Long are at huggingface.co/Dwipz/Anchor-Align.
+
 ## Links
 
 - [Project page](https://anchoralignvla.github.io/): videos, real-world and simulation results.

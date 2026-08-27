@@ -7,10 +7,10 @@
 <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32.png">
 <link rel="apple-touch-icon" href="static/apple-touch-icon.png">
 <title>Anchor-Align: Generalizable VLA Finetuning via Representation Anchoring and Language-Action Alignment</title>
-<meta name="description" content="Anchor-Align improves vision-language-action (VLA) generalization by stopping behavior cloning from overwriting pretrained VLM representations. Real-robot success 28% to 54% on xArm7.">
+<meta name="description" content="Anchor-Align is a VLA finetuning method for robot learning. It stops behavior cloning from erasing pretrained VLM representations (catastrophic forgetting) and aligns language with action. Better OOD generalization on a physical xArm7, LIBERO-PRO, LIBERO-Plus and CALVIN.">
 <link rel="canonical" href="https://anchoralignvla.github.io/">
 <meta name="author" content="Dwip Dalal, Shivansh Patel, Chahit Jain, Jeonghwan Kim, Utkarsh Mishra, Alex Baratian, Hyeonjeong Ha, Heng Ji, Svetlana Lazebnik, Unnat Jain">
-<meta name="keywords" content="vision-language-action model, VLA, VLA generalization, VLA finetuning, robot manipulation, behavior cloning, catastrophic forgetting, representation drift, vision-language model, robot learning, LIBERO, LIBERO-PRO, LIBERO-Plus, CALVIN, xArm7">
+<meta name="keywords" content="vision-language-action model, VLA, VLA finetuning, VLA generalization, robot learning, robot manipulation, language-conditioned robot manipulation, continual learning, catastrophic forgetting, representation drift, knowledge distillation, out-of-distribution generalization, OOD generalization robotics, language-action alignment, language-action misalignment, language and action prediction, behavior cloning, imitation learning, vision-language model finetuning, embodied AI, OpenVLA, StarVLA, Prismatic VLM, Qwen2.5, xArm7, LIBERO, LIBERO-PRO, LIBERO-Plus, CALVIN, Anchor-Align">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 
 <!-- Google Scholar / Zotero / Mendeley citation metadata -->
@@ -34,6 +34,23 @@
 <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2607.13429">
 <meta name="citation_language" content="en">
 
+<meta name="citation_keywords" content="vision-language-action models; robot learning; continual learning; catastrophic forgetting; out-of-distribution generalization; language-action alignment; behavior cloning; imitation learning; knowledge distillation; robot manipulation">
+<meta name="DC.title" content="Generalizable VLA Finetuning via Representation Anchoring and Language-Action Alignment">
+<meta name="DC.creator" content="Dwip Dalal">
+<meta name="DC.creator" content="Shivansh Patel">
+<meta name="DC.creator" content="Chahit Jain">
+<meta name="DC.creator" content="Jeonghwan Kim">
+<meta name="DC.creator" content="Utkarsh Mishra">
+<meta name="DC.creator" content="Alex Baratian">
+<meta name="DC.creator" content="Hyeonjeong Ha">
+<meta name="DC.creator" content="Heng Ji">
+<meta name="DC.creator" content="Svetlana Lazebnik">
+<meta name="DC.creator" content="Unnat Jain">
+<meta name="DC.subject" content="vision-language-action models; robot learning; continual learning; catastrophic forgetting; out-of-distribution generalization; language-action alignment">
+<meta name="DC.identifier" content="arXiv:2607.13429">
+<meta name="DC.date" content="2026-07-15">
+<meta name="DC.type" content="Text">
+<meta name="DC.language" content="en">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Anchor-Align">
 <meta property="article:published_time" content="2026-07-15">
@@ -86,14 +103,131 @@
     "https://huggingface.co/Dwipz/Anchor-Align"
   ],
   "image": "https://anchoralignvla.github.io/static/images/og_thumb.jpg",
-  "keywords": "vision-language-action model, VLA, VLA generalization, VLA finetuning, robot manipulation, behavior cloning, catastrophic forgetting, representation drift, vision-language model, robot learning, LIBERO-PRO, LIBERO-Plus, CALVIN",
+  "keywords": "vision-language-action model, VLA, VLA finetuning, VLA generalization, robot learning, robot manipulation, language-conditioned robot manipulation, continual learning, catastrophic forgetting, representation drift, knowledge distillation, out-of-distribution generalization, OOD generalization robotics, language-action alignment, language-action misalignment, language and action prediction, behavior cloning, imitation learning, vision-language model finetuning, embodied AI, OpenVLA, StarVLA, Prismatic VLM, Qwen2.5, xArm7, LIBERO, LIBERO-PRO, LIBERO-Plus, CALVIN, Anchor-Align",
   "about": [
     { "@type": "Thing", "name": "Vision-language-action models" },
+    { "@type": "Thing", "name": "Robot learning" },
     { "@type": "Thing", "name": "Robot manipulation" },
-    { "@type": "Thing", "name": "Out-of-distribution generalization" }
+    { "@type": "Thing", "name": "Continual learning" },
+    { "@type": "Thing", "name": "Catastrophic forgetting" },
+    { "@type": "Thing", "name": "Out-of-distribution generalization" },
+    { "@type": "Thing", "name": "Language-action alignment" },
+    { "@type": "Thing", "name": "Behavior cloning" },
+    { "@type": "Thing", "name": "Knowledge distillation" }
   ],
+  "video": { "@id": "https://anchoralignvla.github.io/#teaser" },
+  "hasPart": { "@id": "https://anchoralignvla.github.io/#faq" },
   "citation": "Dalal, D., Patel, S., Jain, C., Kim, J., Mishra, U., Baratian, A., Ha, H., Ji, H., Lazebnik, S., & Jain, U. (2026). Generalizable VLA Finetuning via Representation Anchoring and Language-Action Alignment. arXiv:2607.13429.",
   "codeRepository": "https://github.com/dwipddalal/Anchor-Align"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "@id": "https://anchoralignvla.github.io/#teaser",
+  "name": "Anchor-Align teaser: generalizable VLA finetuning for robot manipulation",
+  "description": "Narrated overview of Anchor-Align. Behavior cloning erases pretrained VLM representations; Vision-Language Anchoring and Language-Action Alignment restore out-of-distribution generalization on a UFactory xArm7 robot, LIBERO-PRO, LIBERO-Plus and CALVIN.",
+  "thumbnailUrl": [
+    "https://anchoralignvla.github.io/static/images/og_thumb.jpg"
+  ],
+  "contentUrl": "https://anchoralignvla.github.io/static/videos/anchor_align_teaser.mp4",
+  "uploadDate": "2026-07-22",
+  "duration": "PT2M37S",
+  "inLanguage": "en",
+  "isFamilyFriendly": true,
+  "publisher": {
+    "@type": "Organization",
+    "name": "Anchor-Align",
+    "url": "https://anchoralignvla.github.io/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://anchoralignvla.github.io/#faq",
+  "url": "https://anchoralignvla.github.io/#faq",
+  "name": "Anchor-Align: frequently asked questions",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Anchor-Align?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Anchor-Align is a finetuning method for vision-language-action (VLA) models. It adds two losses to standard behavior cloning (BC). Vision-Language Anchoring keeps the pretrained VLM representations intact. Language-Action Alignment trains language and action prediction on the same robot observation. The result is a VLA policy that generalizes better to new scenes, objects and instructions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does behavior cloning hurt generalization in VLA models?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "BC finetuning updates the VLM weights from action losses only. Over training, it progressively overwrites the pretrained representations that support visual and semantic generalization. This is a form of catastrophic forgetting. The policy still succeeds on the training distribution, so standard manipulation benchmarks do not expose the loss."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Anchor-Align relate to continual learning and catastrophic forgetting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Anchor-Align treats VLA finetuning as a continual learning problem: the model must learn actions without forgetting its pretrained vision-language knowledge. Vision-Language Anchoring distills layer-wise hidden representations from a frozen copy of the pretrained VLM into the trainable policy during finetuning. This prevents representation drift. Unlike co-training, it does not add web image-text data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is language-action alignment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In standard BC, only the action head gets supervision. The language output can drift, so the same model can say “left” while its action head moves up on the same observation. Language-Action Alignment converts each action target into a discrete motion-direction label (up, down, left, right, forward, backward). The model then predicts this label and the action on the same observation, so language and action prediction agree."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which robots, VLA architectures and benchmarks does Anchor-Align use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Real world: a UFactory xArm7 arm with two VLA architectures, a Prismatic Qwen2.5-0.5B VLA and StarVLA. Real-robot success rises from 28% to 54% and from 37% to 60%. Simulation: LIBERO-PRO (object and position generalization), LIBERO-Plus (seven perceptual perturbation axes) and CALVIN (long-horizon control)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Anchor-Align improve out-of-distribution generalization for robot manipulation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. On LIBERO-PRO position swap, Anchor-Align reaches 22.6% versus 2.3% for standard BC. On LIBERO-Plus, mean success rises from 85.1% to 90.3%. On the xArm7, the policy picks the correct mug by color, handles new layouts and clutter, and follows the instruction when the object orientation changes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where are the paper, code and checkpoints?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The paper is arXiv:2607.13429. The inference and evaluation code is at github.com/dwipddalal/Anchor-Align. Checkpoints for LIBERO-Spatial, LIBERO-Object, LIBERO-Goal and LIBERO-Long are at huggingface.co/Dwipz/Anchor-Align."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "@id": "https://github.com/dwipddalal/Anchor-Align",
+  "name": "Anchor-Align code and checkpoints",
+  "codeRepository": "https://github.com/dwipddalal/Anchor-Align",
+  "programmingLanguage": "Python",
+  "runtimePlatform": "PyTorch",
+  "license": "https://opensource.org/licenses/MIT",
+  "url": "https://github.com/dwipddalal/Anchor-Align",
+  "sameAs": [
+    "https://huggingface.co/Dwipz/Anchor-Align"
+  ],
+  "description": "Inference and evaluation code plus LoRA checkpoints for Anchor-Align, a VLA finetuning method that prevents catastrophic forgetting of pretrained VLM representations and aligns language with action.",
+  "about": {
+    "@id": "https://anchoralignvla.github.io/#article"
+  }
 }
 </script>
 </head>
@@ -132,6 +266,7 @@
     <a class="sub" href="#positionswap">&middot; ↔️ Position Swap</a>
   </div>
   <a href="#results">Results</a>
+  <a href="#faq">FAQ</a>
   <a href="#bibtex">BibTeX</a>
   </div>
 </aside>
@@ -850,6 +985,41 @@
       and seven from LIBERO-Plus. Left to right: LIBERO-Object, LIBERO-Goal, LIBERO-Long.
     </figcaption>
   </figure>
+</section>
+
+<hr>
+
+<section id="faq" class="section faq">
+  <h2>Frequently asked questions</h2>
+    <details open>
+      <summary>What is Anchor-Align?</summary>
+      <p>Anchor-Align is a finetuning method for vision-language-action (VLA) models. It adds two losses to standard behavior cloning (BC). Vision-Language Anchoring keeps the pretrained VLM representations intact. Language-Action Alignment trains language and action prediction on the same robot observation. The result is a VLA policy that generalizes better to new scenes, objects and instructions.</p>
+    </details>
+    <details>
+      <summary>Why does behavior cloning hurt generalization in VLA models?</summary>
+      <p>BC finetuning updates the VLM weights from action losses only. Over training, it progressively overwrites the pretrained representations that support visual and semantic generalization. This is a form of catastrophic forgetting. The policy still succeeds on the training distribution, so standard manipulation benchmarks do not expose the loss.</p>
+    </details>
+    <details>
+      <summary>How does Anchor-Align relate to continual learning and catastrophic forgetting?</summary>
+      <p>Anchor-Align treats VLA finetuning as a continual learning problem: the model must learn actions without forgetting its pretrained vision-language knowledge. Vision-Language Anchoring distills layer-wise hidden representations from a frozen copy of the pretrained VLM into the trainable policy during finetuning. This prevents representation drift. Unlike co-training, it does not add web image-text data.</p>
+    </details>
+    <details>
+      <summary>What is language-action alignment?</summary>
+      <p>In standard BC, only the action head gets supervision. The language output can drift, so the same model can say “left” while its action head moves up on the same observation. Language-Action Alignment converts each action target into a discrete motion-direction label (up, down, left, right, forward, backward). The model then predicts this label and the action on the same observation, so language and action prediction agree.</p>
+    </details>
+    <details>
+      <summary>Which robots, VLA architectures and benchmarks does Anchor-Align use?</summary>
+      <p>Real world: a UFactory xArm7 arm with two VLA architectures, a Prismatic Qwen2.5-0.5B VLA and StarVLA. Real-robot success rises from 28% to 54% and from 37% to 60%. Simulation: LIBERO-PRO (object and position generalization), LIBERO-Plus (seven perceptual perturbation axes) and CALVIN (long-horizon control).</p>
+    </details>
+    <details>
+      <summary>Does Anchor-Align improve out-of-distribution generalization for robot manipulation?</summary>
+      <p>Yes. On LIBERO-PRO position swap, Anchor-Align reaches 22.6% versus 2.3% for standard BC. On LIBERO-Plus, mean success rises from 85.1% to 90.3%. On the xArm7, the policy picks the correct mug by color, handles new layouts and clutter, and follows the instruction when the object orientation changes.</p>
+    </details>
+    <details>
+      <summary>Where are the paper, code and checkpoints?</summary>
+      <p>The paper is <a href="https://arxiv.org/abs/2607.13429" target="_blank" rel="noopener">arXiv:2607.13429</a>. The inference and evaluation code is at <a href="https://github.com/dwipddalal/Anchor-Align" target="_blank" rel="noopener">github.com/dwipddalal/Anchor-Align</a>. Checkpoints for LIBERO-Spatial, LIBERO-Object, LIBERO-Goal and LIBERO-Long are at <a href="https://huggingface.co/Dwipz/Anchor-Align" target="_blank" rel="noopener">huggingface.co/Dwipz/Anchor-Align</a>.</p>
+    </details>
+  <p class="topics">Topics: vision-language-action models &middot; robot learning &middot; continual learning &middot; catastrophic forgetting &middot; out-of-distribution generalization &middot; language-action alignment &middot; behavior cloning &middot; imitation learning &middot; knowledge distillation &middot; robot manipulation</p>
 </section>
 
 <hr>

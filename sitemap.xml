@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://anchoralignvla.github.io/</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <video:video>
+      <video:thumbnail_loc>https://anchoralignvla.github.io/static/images/og_thumb.jpg</video:thumbnail_loc>
+      <video:title>Anchor-Align teaser: generalizable VLA finetuning for robot manipulation</video:title>
+      <video:description>Narrated overview of Anchor-Align. Behavior cloning erases pretrained VLM representations; Vision-Language Anchoring and Language-Action Alignment restore out-of-distribution generalization on a UFactory xArm7 robot, LIBERO-PRO, LIBERO-Plus and CALVIN.</video:description>
+      <video:content_loc>https://anchoralignvla.github.io/static/videos/anchor_align_teaser.mp4</video:content_loc>
+      <video:duration>157</video:duration>
+      <video:publication_date>2026-07-22</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
   </url>
 </urlset>
