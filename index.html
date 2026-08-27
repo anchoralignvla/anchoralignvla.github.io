@@ -172,7 +172,7 @@
       "name": "How does Anchor-Align relate to continual learning and catastrophic forgetting?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Anchor-Align treats VLA finetuning as a continual learning problem: the model must learn actions without forgetting its pretrained vision-language knowledge. Vision-Language Anchoring distills layer-wise hidden representations from a frozen copy of the pretrained VLM into the trainable policy during finetuning. This prevents representation drift. Unlike co-training, it does not add web image-text data."
+        "text": "This is the classic continual learning problem: learn a new skill (actions) without forgetting what the pretrained model already knows (vision-language semantics). Vision-Language Anchoring distills layer-wise hidden representations from a frozen copy of the pretrained VLM into the trainable policy during finetuning. This prevents representation drift. Unlike co-training, it does not add web image-text data."
       }
     },
     {
@@ -196,7 +196,7 @@
       "name": "Does Anchor-Align improve out-of-distribution generalization for robot manipulation?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. On LIBERO-PRO position swap, Anchor-Align reaches 22.6% versus 2.3% for standard BC. On LIBERO-Plus, mean success rises from 85.1% to 90.3%. On the xArm7, the policy picks the correct mug by color, handles new layouts and clutter, and follows the instruction when the object orientation changes."
+        "text": "Yes. On LIBERO-PRO position swap, Anchor-Align reaches 22.6% versus 2.3% for standard BC. On LIBERO-Plus, mean success rises from 85.1% to 90.3%. On the xArm7, the policy picks the correct mug by color, handles new layouts and clutter, and stays grounded in the observation when object placement and orientation change."
       }
     },
     {
@@ -1001,7 +1001,7 @@
     </details>
     <details>
       <summary>How does Anchor-Align relate to continual learning and catastrophic forgetting?</summary>
-      <p>Anchor-Align treats VLA finetuning as a continual learning problem: the model must learn actions without forgetting its pretrained vision-language knowledge. Vision-Language Anchoring distills layer-wise hidden representations from a frozen copy of the pretrained VLM into the trainable policy during finetuning. This prevents representation drift. Unlike co-training, it does not add web image-text data.</p>
+      <p>This is the classic continual learning problem: learn a new skill (actions) without forgetting what the pretrained model already knows (vision-language semantics). Vision-Language Anchoring distills layer-wise hidden representations from a frozen copy of the pretrained VLM into the trainable policy during finetuning. This prevents representation drift. Unlike co-training, it does not add web image-text data.</p>
     </details>
     <details>
       <summary>What is language-action alignment?</summary>
@@ -1013,7 +1013,7 @@
     </details>
     <details>
       <summary>Does Anchor-Align improve out-of-distribution generalization for robot manipulation?</summary>
-      <p>Yes. On LIBERO-PRO position swap, Anchor-Align reaches 22.6% versus 2.3% for standard BC. On LIBERO-Plus, mean success rises from 85.1% to 90.3%. On the xArm7, the policy picks the correct mug by color, handles new layouts and clutter, and follows the instruction when the object orientation changes.</p>
+      <p>Yes. On LIBERO-PRO position swap, Anchor-Align reaches 22.6% versus 2.3% for standard BC. On LIBERO-Plus, mean success rises from 85.1% to 90.3%. On the xArm7, the policy picks the correct mug by color, handles new layouts and clutter, and stays grounded in the observation when object placement and orientation change.</p>
     </details>
     <details>
       <summary>Where are the paper, code and checkpoints?</summary>
