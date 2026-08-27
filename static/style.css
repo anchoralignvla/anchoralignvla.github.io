@@ -831,4 +831,3 @@ hr {
 @media (max-width: 760px) {
   .spider-grid { grid-template-columns: 1fr; gap: 4px; }
 }
-
