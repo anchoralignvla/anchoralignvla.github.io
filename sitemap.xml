@@ -1,11 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://anchoralignvla.github.io/</loc>
     <lastmod>2026-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://anchoralignvla.github.io/static/images/og_thumb.jpg</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://anchoralignvla.github.io/static/images/main_fig.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://anchoralignvla.github.io/static/images/realworld_results.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://anchoralignvla.github.io/static/images/rw_semantic_fig.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://anchoralignvla.github.io/static/images/rw_spatial_fig.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://anchoralignvla.github.io/static/images/rw_clutter_fig.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://anchoralignvla.github.io/static/images/rw_compositional_fig.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://anchoralignvla.github.io/static/images/fig_object_spider.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://anchoralignvla.github.io/static/images/fig_goal_spider.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://anchoralignvla.github.io/static/images/fig_long_spider.png</image:loc>
+    </image:image>
     <video:video>
       <video:thumbnail_loc>https://anchoralignvla.github.io/static/images/og_thumb.jpg</video:thumbnail_loc>
       <video:title>Anchor-Align teaser: generalizable VLA finetuning for robot manipulation</video:title>
