@@ -831,3 +831,38 @@ hr {
 @media (max-width: 760px) {
   .spider-grid { grid-template-columns: 1fr; gap: 4px; }
 }
+
+/* Table 1 (13 columns): fit the content column without horizontal scrolling */
+.res-table-compact { min-width: 0; font-size: 13.5px; table-layout: auto; }
+.res-table-compact th, .res-table-compact td { padding: 7px 6px; text-align: center; }
+.res-table-compact th:first-child, .res-table-compact td:first-child { text-align: left; white-space: nowrap; padding-left: 8px; }
+.res-table-compact thead th { white-space: normal; line-height: 1.25; vertical-align: bottom; }
+.res-table-compact thead th.grp { vertical-align: middle; }
+@media (max-width: 900px) {
+  .res-table-compact { font-size: 12.5px; }
+  .res-table-compact th, .res-table-compact td { padding: 6px 4px; }
+}
+@media (max-width: 720px) { .res-table-compact { min-width: 700px; } }
+
+/* Real-world results: one compact row of the paper graphs under the capability list */
+.rw-graphs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 18px 0 4px; }
+.rw-graph { margin: 0; background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 9px 10px 8px; display: flex; flex-direction: column; }
+.rw-graph figcaption { display: grid; grid-template-columns: 18px 1fr; column-gap: 7px; align-items: center; margin-bottom: 6px; text-align: left; line-height: 1.25; }
+.rw-num { width: 18px; height: 18px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+.rw-title { font-weight: 600; font-size: 13px; }
+.rw-meta { grid-column: 2; font-size: 11px; color: var(--muted); opacity: .75; }
+.rw-graph a { display: block; margin-top: auto; cursor: zoom-in; }
+.rw-graph img { display: block; height: 118px; width: auto; max-width: 100%; object-fit: contain; margin: 0 auto; }
+@media (max-width: 560px) { .rw-graph img { height: auto; max-height: 200px; } }
+.rw-graphs-note { font-size: 12.5px; color: var(--muted); margin: 6px 0 24px; }
+@media (max-width: 1000px) { .rw-graphs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px)  { .rw-graphs { grid-template-columns: 1fr; } }
+/* videos that must keep their own frame (e.g. the 2:1 three-camera composite) */
+.vid.vid-native { aspect-ratio: 1444 / 720; object-fit: contain; }
+
+/* YAM videos side by side at equal height: 16:9 (Reactive Grasp) next to 2:1 (Tomato Plate Transfer) */
+.rw-motion-row { display: grid; grid-template-columns: 1fr 1.125fr; gap: 14px; align-items: end; margin-top: 10px; }
+.rw-motion-vid { margin: 0; }
+.rw-motion-vid figcaption { margin: 0 0 6px; font-size: 13px; font-weight: 600; letter-spacing: .02em; color: var(--muted); }
+.rw-motion-vid figcaption.ours { color: #15803d; }
+@media (max-width: 720px) { .rw-motion-row { grid-template-columns: 1fr; } }

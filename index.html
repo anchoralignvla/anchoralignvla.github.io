@@ -7,7 +7,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32.png">
 <link rel="apple-touch-icon" href="static/apple-touch-icon.png">
 <title>Anchor-Align: Generalizable VLA Finetuning via Representation Anchoring and Language-Action Alignment</title>
-<meta name="description" content="Anchor-Align is a VLA finetuning method for robot learning. It stops behavior cloning from erasing pretrained VLM representations (catastrophic forgetting) and aligns language with action. Better OOD generalization on a physical xArm7, LIBERO-PRO, LIBERO-Plus and CALVIN.">
+<meta name="description" content="Anchor-Align is a VLA finetuning method for robot learning. It stops behavior cloning from erasing pretrained VLM representations (catastrophic forgetting) and aligns language with action. Better OOD generalization on single-arm xArm7 and bimanual YAM robots, LIBERO-PRO, LIBERO-Plus and CALVIN.">
 <link rel="canonical" href="https://anchoralignvla.github.io/">
 <meta name="author" content="Dwip Dalal, Shivansh Patel, Chahit Jain, Jeonghwan Kim, Utkarsh Mishra, Alex Baratian, Hyeonjeong Ha, Heng Ji, Svetlana Lazebnik, Unnat Jain">
 <meta name="keywords" content="vision-language-action model, VLA, VLA finetuning, VLA generalization, robot learning, robot manipulation, language-conditioned robot manipulation, continual learning, catastrophic forgetting, representation drift, knowledge distillation, out-of-distribution generalization, OOD generalization robotics, language-action alignment, language-action misalignment, language and action prediction, behavior cloning, imitation learning, vision-language model finetuning, embodied AI, OpenVLA, StarVLA, Prismatic VLM, Qwen2.5, xArm7, LIBERO, LIBERO-PRO, LIBERO-Plus, CALVIN, Anchor-Align">
@@ -57,7 +57,7 @@
 <meta property="article:published_time" content="2026-07-15">
 <meta property="og:url" content="https://anchoralignvla.github.io/">
 <meta property="og:title" content="Anchor-Align: Generalizable VLA Finetuning via Representation Anchoring and Language-Action Alignment">
-<meta property="og:description" content="Anchor-Align preserves the VLM semantics that behavior cloning erases, nearly doubling real-robot task success (28.3% to 54.2%).">
+<meta property="og:description" content="Anchor-Align preserves the VLM semantics that behavior cloning erases, improving over behavior cloning across eight real-world manipulation settings on single-arm xArm7 and bimanual YAM robots.">
 <meta property="og:image" content="https://anchoralignvla.github.io/static/images/og_thumb.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -69,7 +69,7 @@
 <meta property="og:video:height" content="1080">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Anchor-Align: Generalizable VLA Finetuning via Representation Anchoring and Language-Action Alignment">
-<meta name="twitter:description" content="Anchor-Align preserves the VLM semantics that behavior cloning erases, nearly doubling real-robot task success.">
+<meta name="twitter:description" content="Anchor-Align preserves the VLM semantics that behavior cloning erases, improving over behavior cloning across eight real-world manipulation settings.">
 <meta name="twitter:image" content="https://anchoralignvla.github.io/static/images/og_thumb.jpg">
 <meta name="twitter:image:alt" content="Anchor-Align: a VLA finetuning method that keeps pretrained VLM representations and aligns language with action">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -231,10 +231,11 @@
   <div class="sidenav-cat">Real World</div>
   <a href="#realworld" class="top">Real World</a>
   <div class="sub-links">
-    <a class="sub" href="#rw-semantic">&middot; 🎨 Semantic Perturbation</a>
-    <a class="sub" href="#rw-mugplate">&middot; 🔀 Spatial Rearrangement</a>
-    <a class="sub" href="#rw-clutter">&middot; 🧺 Cluttered Scene</a>
-    <a class="sub" href="#rw-compositional">&middot; 🧩 Compositional Object-Layout</a>
+    <a class="sub" href="#rw-semantic">&middot; 🎨 Target Generalization</a>
+    <a class="sub" href="#rw-mugplate">&middot; 🔀 Spatial: Green Mug</a>
+    <a class="sub" href="#rw-compositional">&middot; 🧩 Spatial: Broccoli</a>
+    <a class="sub" href="#rw-clutter">&middot; 🧺 Grounding in Clutter</a>
+    <a class="sub" href="#rw-motion">&middot; 🤲 Motion &amp; Stability (YAM)</a>
   </div>
   <div class="sidenav-cat">Simulation</div>
   <a href="#liberoplus" class="top">LIBERO-Plus</a>
@@ -324,9 +325,11 @@
     <em>Vision-Language Anchoring</em> distills layer-wise representations from a frozen VLM
     copy to prevent this drift, while <em>Language-Action Alignment</em> converts each action
     target into a discrete motion-direction label and jointly trains language and action
-    prediction on the same robot observation. On a physical xArm7 robot, across two widely used
-    VLA architectures, Anchor-Align improves real-robot success on both (28% &rarr; 54% and
-    37% &rarr; 60%). At scale in simulation, we demonstrate consistent improvements on OOD
+    prediction on the same robot observation. We conduct real-world evaluations across eight
+    manipulation settings on single-arm xArm7 and bimanual YAM robots, using two VLA
+    architectures with regression and flow-matching action heads. Across these settings,
+    Anchor-Align consistently improves over BC on novel targets, layouts, and motion-sensitive
+    bimanual tasks requiring coordinated control. At scale in simulation, we demonstrate consistent improvements on OOD
     perturbations, perceptual robustness, and long-horizon control across LIBERO-PRO,
     LIBERO-Plus, and CALVIN, respectively, suggesting that preserving pretrained representations
     and effective action learning are not fundamentally at odds.
@@ -351,49 +354,51 @@
 <hr>
 
 <section id="realworld" class="section">
-  <h2>Real-world generalization (UFactory xArm7)</h2>
+  <h2>Real-world generalization (xArm7 and bimanual YAM)</h2>
   <p>
-    We deploy <strong>Anchor-Align</strong> on a real UFactory xArm7 manipulation setup and
-    evaluate observation-grounded generalization rather than memorization of a single tabletop
-    layout:
+    We compare <strong>Anchor-Align</strong> against standard BC on two VLA architectures:
+    VLA-Adapter (Prismatic-Qwen2.5-0.5B backbone with a Bridge-Attention regression head) and
+    StarVLA (Qwen2.5-VL backbone with a GR00T FM-DiT flow-matching action head). Each comparison
+    uses the same architecture for both methods, differing only in the training objective. We
+    evaluate four capabilities across two robots:
   </p>
   <ol class="regimes">
-    <li><strong>Semantic Perturbation</strong>: the policy must pick up the pink mug despite being trained only to pick and place the green mug, tested across varied layouts of the target, mugs, and distractor objects.</li>
-    <li><strong>Spatial Rearrangement</strong>: the target object, surrounding objects, and distractors are relocated.</li>
-    <li><strong>Cluttered Scene</strong>: additional distractor objects are added and the policy must select the object specified by language.</li>
-    <li><strong>Compositional Object-Layout</strong>: object placement and object orientation are jointly changed.</li>
+    <li><strong>Target Generalization (OOD)</strong> on the single-arm xArm7: the language-specified target changes at test time (<em>Pink Mug Placement</em>, <em>Cable Insertion</em>).</li>
+    <li><strong>Spatial Generalization (OOD)</strong> on the xArm7: objects and distractors are moved to configurations unseen in training (<em>Broccoli Placement</em>, <em>Green Mug Placement</em>).</li>
+    <li><strong>Target Grounding in Clutter</strong> on the xArm7: the policy must pick the language-specified object from among multiple distractors (<em>Clutter Scene</em>).</li>
+    <li><strong>Motion Understanding and Stability</strong> on the 14-DoF bimanual YAM: tasks that require reactive execution and coordinated motion across both arms (<em>Reactive Grasp</em>, <em>Tomato Plate Transfer</em>).</li>
   </ol>
-  <p>
-    For Spatial Rearrangement, Compositional Object-Layout, and Semantic Perturbation, every
-    evaluation tests a layout that never appeared in the training data, making these regimes more
-    challenging than the LIBERO-PRO position swap.
-  </p>
 
-  <figure class="fig">
-    <img src="static/images/realworld_results.png" alt="Real-world generalization success rates across conditions and backbones">
-    <figcaption class="big-cap">
-      <strong>Real-world testing under different backbones and different generalization setups.</strong> Success rates
-      across the three generalization conditions for two distinct backbones. Anchor-Align
-      improves generalization on both: with the Prismatic Qwen2.5-0.5B backbone, mean success
-      rises markedly, and with the architecturally distinct StarVLA backbone, every condition
-      improves. Right
-      (pink-mug OOD, trained only on the green mug): the Standard BC baseline collapses to its
-      training-time green-mug prior, picking the wrong (green) mug in 90% of trials and placing it in 30%,
-      while Anchor-Align follows the &ldquo;pink mug&rdquo; instruction, picking the pink mug in
-      100% of trials and placing it on the plate in 40%.
-    </figcaption>
-  </figure>
-
-  
+  <div class="rw-graphs">
+    <figure class="rw-graph">
+      <figcaption><span class="rw-num">1</span><span class="rw-title">Target Generalization</span><span class="rw-meta">xArm7 · StarVLA</span></figcaption>
+      <a href="static/images/realworld/fig_semantic_results.png" target="_blank" rel="noopener" title="Open full-size graph"><img loading="lazy" src="static/images/realworld/fig_semantic_results.png" alt="Bar chart: Standard BC vs Anchor-Align with StarVLA on Pink Mug Placement (pickup and placed, for the instructed pink mug) and Cable Insertion (success)"></a>
+    </figure>
+    <figure class="rw-graph">
+      <figcaption><span class="rw-num">2</span><span class="rw-title">Spatial Generalization</span><span class="rw-meta">xArm7 · VLA-Adapter and StarVLA</span></figcaption>
+      <a href="static/images/realworld/fig_spatial_results.png" target="_blank" rel="noopener" title="Open full-size graph"><img loading="lazy" src="static/images/realworld/fig_spatial_results.png" alt="Bar chart: Standard BC vs Anchor-Align success on Broccoli Placement and Green Mug Placement with VLA-Adapter and StarVLA"></a>
+    </figure>
+    <figure class="rw-graph">
+      <figcaption><span class="rw-num">3</span><span class="rw-title">Target Grounding in Clutter</span><span class="rw-meta">xArm7 · VLA-Adapter and StarVLA</span></figcaption>
+      <a href="static/images/realworld/fig_clutter_results.png" target="_blank" rel="noopener" title="Open full-size graph"><img loading="lazy" src="static/images/realworld/fig_clutter_results.png" alt="Bar chart: Standard BC vs Anchor-Align success on Clutter Scene with VLA-Adapter and StarVLA"></a>
+    </figure>
+    <figure class="rw-graph">
+      <figcaption><span class="rw-num">4</span><span class="rw-title">Motion &amp; Stability</span><span class="rw-meta">bimanual YAM · VLA-Adapter</span></figcaption>
+      <a href="static/images/realworld/fig_yam_results.png" target="_blank" rel="noopener" title="Open full-size graph"><img loading="lazy" src="static/images/realworld/fig_yam_results.png" alt="Bar chart: Standard BC vs Anchor-Align on YAM for Reactive Grasp, and plate placement and tomato retention on Tomato Plate Transfer and its OOD variant"></a>
+    </figure>
+  </div>
+  <p class="rw-graphs-note">Success rates (%) over 20 rollouts per method and condition. In (1), Pickup and Placed refer to the instructed pink mug. In (4), Placed is plate-placement success and Retained is the mean percentage of the eight tomatoes kept on the plate.</p>
 
 
 
-  <h3 id="rw-semantic" class="sub">🎨 Semantic Perturbation (pink-mug OOD)</h3>
-<p class="caption">Trained only on the green mug, the policy is tested with a new instruction referring to the pink mug. This probes whether the policy uses the preserved VLM color concept under a new instruction instead of defaulting to the training object. The Standard BC baseline collapses to its training-time green-mug prior, while Anchor-Align follows the instruction and picks the pink mug.</p>
+
+  <h3 id="rw-semantic" class="sub">🎨 Target Generalization: Pink Mug Placement</h3>
+<p class="caption">During training the policy is only told to &ldquo;pick up the green mug and place it on the plate&rdquo;; at test time the instructed target changes to the pink mug, in a spatial layout not seen during training. With StarVLA, Standard BC keeps acting on the training target (the green mug), while Anchor-Align picks up the instructed pink mug. <em>Cable Insertion</em> similarly swaps the red cable manager seen in training for a green one at test time.</p>
+
 <div class="grid grid-pairs">
 
         <div class="pair">
-          <div class="pair-title">Pink-mug OOD</div>
+          <div class="pair-title">Pink Mug Placement (OOD)</div>
           <p class="task-prompt"><span class="prompt-label">Task prompt:</span> &ldquo;Pick up the pink mug and place it on the plate.&rdquo;</p>
           <div class="pair-grid setup-quad rw">
             <figure><figcaption class="setup-cap">Train setup</figcaption><img loading="lazy" src="static/images/rw_mug_train.png" alt="Train setup: green-mug scene"></figure>
@@ -420,8 +425,9 @@
 <figure class="single-vid"><figcaption class="single-caption">Spatial Arrangement 7</figcaption><video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/semantic_pink_mug/align9.mp4"></video></figure>
 -->
 </div>
-<h3 id="rw-mugplate" class="sub">🔀 Spatial Rearrangement</h3>
-<p class="caption">Standard BC progressively erodes the VLM&rsquo;s pretrained color semantics. Faced with a scene containing multiple mugs, the baseline can no longer reliably distinguish objects by color and grasps the wrong one. Anchor-Align prevents this erosion via Vision-Language Anchoring, retaining color grounding throughout finetuning and consistently picking the correct target.</p>
+<h3 id="rw-mugplate" class="sub">🔀 Spatial Generalization: Green Mug Placement</h3>
+<p class="caption">The target and surrounding objects, including distractors, are relocated to configurations unseen during training, while the instruction and target stay the same: &ldquo;pick up the green mug and place it on the plate.&rdquo; Anchor-Align improves success on both backbones.</p>
+
 <div class="grid grid-pairs">
         <div class="pair">
           <p class="task-prompt"><span class="prompt-label">Task prompt:</span> &ldquo;Pick up the green mug and place it on the plate.&rdquo;</p>
@@ -462,24 +468,8 @@
 <figure class="single-vid"><figcaption class="single-caption">Arrangement 2</figcaption><video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/mugplate_align60k/trial14.mp4"></video></figure>
 <figure class="single-vid"><figcaption class="single-caption">Arrangement 3</figcaption><video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/mugplate_align60k/trial16.mp4"></video></figure>
 </div>
-<h3 id="rw-clutter" class="sub">🧺 Cluttered Scene</h3>
-<p class="caption">Additional distractor objects are added and the policy must select the object specified by language. We show one representative Anchor-Align rollout for each of the three target objects.</p>
-<div class="clutter-row">
-  <div class="clutter-col">
-    <h4 id="rw-clutter-yellow_bp" class="evalh">Target object: Yellow bell pepper</h4>
-    <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/clutter_evals/clutter_anch_17500/trial2_yellow_bp.mp4"></video>
-  </div>
-  <div class="clutter-col">
-    <h4 id="rw-clutter-pineapple" class="evalh">Target object: Pineapple</h4>
-    <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/clutter_evals/clutter_anch_17500/trial5_pineapple.mp4"></video>
-  </div>
-  <div class="clutter-col">
-    <h4 id="rw-clutter-red_bp" class="evalh">Target object: Red bell pepper</h4>
-    <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/clutter_evals/clutter_anch_17500/trial6_red_bp.mp4"></video>
-  </div>
-</div>
-<h3 id="rw-compositional" class="sub">🧩 Compositional Object-Layout</h3>
-<p class="caption">Object placement and object orientation are jointly changed, so every evaluation is out-of-distribution. The Standard BC baseline drifts toward a memorized motion, while Anchor-Align stays grounded in the current observation.</p>
+<h3 id="rw-compositional" class="sub">🧩 Spatial Generalization: Broccoli Placement</h3>
+<p class="caption">The position and orientation of the broccoli and the surrounding distractors are changed relative to the training configurations, so every evaluation is out-of-distribution. Anchor-Align improves success on both backbones (results graph 2 above).</p>
 <div class="grid grid-pairs">
 
         <div class="pair">
@@ -510,6 +500,36 @@
 <figure class="bare-vid"><video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/compositional_broccoli/align_trial16.mp4"></video></figure>
 </div>
 </div>
+<h3 id="rw-clutter" class="sub">🧺 Target Grounding in Clutter: Clutter Scene</h3>
+<p class="caption">The robot must pick up the object named in the instruction from among multiple distractors, with the target varied across a pineapple, a yellow pepper and a red pepper in the same scene. Anchor-Align improves success on both backbones. We show one representative Anchor-Align rollout for each target.</p>
+
+<div class="clutter-row">
+  <div class="clutter-col">
+    <h4 id="rw-clutter-yellow_bp" class="evalh">Target object: Yellow bell pepper</h4>
+    <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/clutter_evals/clutter_anch_17500/trial2_yellow_bp.mp4"></video>
+  </div>
+  <div class="clutter-col">
+    <h4 id="rw-clutter-pineapple" class="evalh">Target object: Pineapple</h4>
+    <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/clutter_evals/clutter_anch_17500/trial5_pineapple.mp4"></video>
+  </div>
+  <div class="clutter-col">
+    <h4 id="rw-clutter-red_bp" class="evalh">Target object: Red bell pepper</h4>
+    <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/clutter_evals/clutter_anch_17500/trial6_red_bp.mp4"></video>
+  </div>
+</div>
+<h3 id="rw-motion" class="sub">🤲 Motion Understanding and Stability (bimanual YAM)</h3>
+<p class="caption">Two tasks on the 14-DoF bimanual YAM that require reactive execution and coordinated motion across both arms; the Language-Action Alignment loss is applied to each arm independently, with a separate motion-direction label for each. <em>Reactive Grasp</em>: the robot must intercept and grasp a bottle carried by a moving person, adapting its reach and gripper closure to the target&rsquo;s motion. <em>Tomato Plate Transfer</em>: the robot must lift a plate carrying eight tomatoes and transport it onto a box while keeping a level grasp and smooth motion, since a height mismatch between the arms tilts the plate and abrupt motion makes the tomatoes roll off. <em>Tomato Plate Transfer (OOD)</em> repeats the task under an unseen visual configuration, with the box covered in white paper and the workspace walls removed.</p>
+<div class="rw-motion-row">
+  <figure class="rw-motion-vid">
+    <figcaption class="evalh">Reactive Grasp</figcaption>
+    <video class="vid" muted loop playsinline preload="none" controls data-speed="1" data-src="static/videos/realworld/reactive_grasp/reactive_grasp.mp4"></video>
+  </figure>
+  <figure class="rw-motion-vid">
+    <figcaption class="evalh ours">Tomato Plate Transfer: Anchor-Align, head and both wrist cameras</figcaption>
+    <video class="vid vid-native" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/tomato_plate_transfer/aa_ep2_three_views.mp4"></video>
+  </figure>
+</div>
+<p class="task-prompt" style="font-size:13px;margin-top:6px"><span class="prompt-label">Tomato Plate Transfer prompt:</span> &ldquo;Use both arms to pick up the plate and put it onto the box.&rdquo;</p>
 
 </section>
 
@@ -936,8 +956,8 @@
   <h2>Results at a glance</h2>
 
   <div class="table-wrap">
-    <table class="res-table">
-      <caption><strong>Table 1.</strong> Success rates (%) on the LIBERO-PRO and LIBERO-Plus benchmarks. Anchor-Align VLA outperforms all baselines on LIBERO-PRO and LIBERO-Plus.</caption>
+    <table class="res-table res-table-compact">
+      <caption><strong>Table 1.</strong> Success rates (%) on the LIBERO-PRO and LIBERO-Plus benchmarks. Anchor-Align VLA achieves the highest mean on both benchmarks. The best result in each column is <strong>bolded</strong> and the second-best is <u>underlined</u>.</caption>
       <thead>
         <tr>
           <th scope="col" rowspan="2">Method</th>
@@ -945,17 +965,20 @@
           <th scope="colgroup" colspan="8" class="grp">LIBERO-Plus</th>
         </tr>
         <tr>
-          <th scope="col">Lang. Reph.</th><th scope="col">Object Swap</th><th scope="col">Pos. Swap</th><th scope="col" class="mean">Mean</th>
-          <th scope="col">Lang. Instr.</th><th scope="col">Bg. Text.</th><th scope="col">Robot Init</th><th scope="col">Cam. View</th><th scope="col">Obj. Layout</th><th scope="col">Light Cond.</th><th scope="col">Sensor Noise</th><th scope="col" class="mean">Mean</th>
+          <th scope="col">Lang.<br>Reph.</th><th scope="col">Object<br>Swap</th><th scope="col">Pos.<br>Swap</th><th scope="col" class="mean">Mean</th>
+          <th scope="col">Lang.<br>Instr.</th><th scope="col">Bg.<br>Text.</th><th scope="col">Robot<br>Init</th><th scope="col">Cam.<br>View</th><th scope="col">Obj.<br>Layout</th><th scope="col">Light<br>Cond.</th><th scope="col">Sensor<br>Noise</th><th scope="col" class="mean">Mean</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>Co-training + KI</td><td>54.0</td><td>77.4</td><td>0.0</td><td class="mean">43.8</td><td>48.0</td><td>82.6</td><td>25.7</td><td>64.6</td><td>65.7</td><td>73.3</td><td>49.0</td><td class="mean">57.1</td></tr>
-        <tr><td>MolmoAct</td><td>77.8</td><td>82.4</td><td>0.0</td><td class="mean">53.4</td><td>79.5</td><td>84.1</td><td>47.4</td><td>10.1</td><td>76.5</td><td>77.4</td><td>53.4</td><td class="mean">60.8</td></tr>
-        <tr><td>OpenVLA-OFT</td><td>74.4</td><td>95.2</td><td>0.0</td><td class="mean">56.5</td><td>81.5</td><td>95.7</td><td>40.3</td><td>94.7</td><td>88.6</td><td>95.5</td><td>28.2</td><td class="mean">74.1</td></tr>
+        <tr><td>MolmoAct</td><td>77.8</td><td>82.4</td><td>0.0</td><td class="mean">53.4</td><td>79.5</td><td>84.1</td><td>47.4</td><td>10.1</td><td>76.5</td><td>77.4</td><td>53.4</td><td class="mean">59.9</td></tr>
+        <tr><td>VLA-0</td><td>75.4</td><td>93.0</td><td>5.4</td><td class="mean">57.9</td><td>60.0</td><td>70.2</td><td>34.9</td><td>42.6</td><td>83.9</td><td>88.7</td><td>60.1</td><td class="mean">62.0</td></tr>
+        <tr><td>OpenVLA-OFT</td><td>74.4</td><td><u>95.2</u></td><td>0.0</td><td class="mean">56.5</td><td>81.5</td><td>95.7</td><td>40.3</td><td>94.7</td><td>88.6</td><td>95.5</td><td>28.2</td><td class="mean">74.1</td></tr>
+        <tr><td>VLA-Adapter</td><td>91.1</td><td>89.6</td><td>2.3</td><td class="mean">61.0</td><td>85.1</td><td>90.7</td><td>52.6</td><td>92.6</td><td><u>93.2</u></td><td>93.2</td><td>89.5</td><td class="mean">85.1</td></tr>
         <tr><td>VLA-Adapter [Frozen]</td><td>56.0</td><td>73.4</td><td>0.0</td><td class="mean">43.1</td><td>41.5</td><td>70.9</td><td>35.1</td><td>94.4</td><td>62.3</td><td>84.9</td><td>36.2</td><td class="mean">59.9</td></tr>
-        <tr><td>VLA-Adapter</td><td>91.1</td><td>89.6</td><td>2.3</td><td class="mean">61.0</td><td>85.1</td><td>90.7</td><td>52.6</td><td>92.6</td><td>93.2</td><td>93.2</td><td>89.5</td><td class="mean">85.1</td></tr>
-        <tr class="ours"><td><strong>Anchor-Align VLA (ours)</strong></td><td><strong>97.0</strong></td><td><strong>96.2</strong></td><td><strong>22.6</strong></td><td class="mean"><strong>71.9</strong></td><td><strong>87.2</strong></td><td><strong>99.6</strong></td><td><strong>59.1</strong></td><td><strong>96.3</strong></td><td><strong>97.4</strong></td><td><strong>99.0</strong></td><td><strong>96.9</strong></td><td class="mean"><strong>90.3</strong></td></tr>
+        <tr><td>Co-training + KI</td><td>53.6</td><td>92.0</td><td>0.0</td><td class="mean">48.5</td><td>61.5</td><td>93.8</td><td>48.6</td><td>89.6</td><td>77.1</td><td>96.9</td><td>48.4</td><td class="mean">72.4</td></tr>
+        <tr><td>LAP</td><td><u>93.2</u></td><td>95.0</td><td><u>12.4</u></td><td class="mean"><u>66.9</u></td><td><strong>88.1</strong></td><td><u>99.2</u></td><td><u>54.0</u></td><td>72.6</td><td>92.5</td><td>95.5</td><td>76.1</td><td class="mean">81.8</td></tr>
+        <tr><td>MAPS</td><td>93.0</td><td>90.2</td><td>11.6</td><td class="mean">64.9</td><td>87.1</td><td>97.3</td><td>52.9</td><td><u>95.2</u></td><td>87.5</td><td><u>97.3</u></td><td><u>90.6</u></td><td class="mean"><u>86.3</u></td></tr>
+        <tr class="ours"><td><strong>Anchor-Align VLA (ours)</strong></td><td><strong>97.0</strong></td><td><strong>96.2</strong></td><td><strong>22.6</strong></td><td class="mean"><strong>71.9</strong></td><td><u>87.2</u></td><td><strong>99.6</strong></td><td><strong>59.1</strong></td><td><strong>96.3</strong></td><td><strong>97.4</strong></td><td><strong>99.0</strong></td><td><strong>96.9</strong></td><td class="mean"><strong>90.3</strong></td></tr>
       </tbody>
     </table>
   </div>
@@ -967,8 +990,8 @@
       <img loading="lazy" src="static/images/fig_long_spider.png" alt="Radar plot for the LIBERO-Long suite comparing Anchor-Align against the standard BC VLA-Adapter baseline across nine evaluation axes">
     </div>
     <figcaption class="big-cap">
-      Each radar plot compares <strong>Anchor-Align</strong> (orange) against the standard BC VLA-Adapter
-      baseline (gray) across nine evaluation axes: two from LIBERO-PRO (Language Rephrase, Object Swap)
+      Each radar plot compares <strong>Anchor-Align</strong> (green) against the standard BC VLA-Adapter
+      baseline (orange, dashed) across nine evaluation axes: two from LIBERO-PRO (Language Rephrase, Object Swap)
       and seven from LIBERO-Plus. Left to right: LIBERO-Object, LIBERO-Goal, LIBERO-Long.
     </figcaption>
   </figure>
