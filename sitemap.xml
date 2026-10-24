@@ -39,8 +39,8 @@
     </image:image>
     <video:video>
       <video:thumbnail_loc>https://anchoralignvla.github.io/static/images/og_thumb.jpg</video:thumbnail_loc>
-      <video:title>Anchor-Align teaser: generalizable VLA finetuning for robot manipulation</video:title>
-      <video:description>Narrated overview of Anchor-Align. Behavior cloning erases pretrained VLM representations; Vision-Language Anchoring and Language-Action Alignment restore out-of-distribution generalization on a UFactory xArm7 robot, LIBERO-PRO, LIBERO-Plus and CALVIN.</video:description>
+      <video:title>Anchor-Align teaser: preventing catastrophic forgetting in VLA finetuning for robot manipulation</video:title>
+      <video:description>Narrated overview of Anchor-Align. Behavior cloning causes catastrophic forgetting of pretrained VLM representations; Vision-Language Anchoring and Language-Action Alignment restore out-of-distribution generalization on a UFactory xArm7 robot, LIBERO-PRO, LIBERO-Plus and CALVIN.</video:description>
       <video:content_loc>https://anchoralignvla.github.io/static/videos/anchor_align_teaser.mp4</video:content_loc>
       <video:duration>157</video:duration>
       <video:publication_date>2026-07-22</video:publication_date>
