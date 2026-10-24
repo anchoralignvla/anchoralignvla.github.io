@@ -10,7 +10,7 @@
 <meta name="description" content="Anchor-Align is a VLA finetuning method for robot learning. It stops behavior cloning from erasing pretrained VLM representations (catastrophic forgetting) and aligns language with action. Better OOD generalization on single-arm xArm7 and bimanual YAM robots, LIBERO-PRO, LIBERO-Plus and CALVIN.">
 <link rel="canonical" href="https://anchoralignvla.github.io/">
 <meta name="google-site-verification" content="KWzJKx3HGmc7Ejwre96FWcytnGifcuwktjMuJC3JFK4" />
-<meta name="author" content="Dwip Dalal, Shivansh Patel, Chahit Jain, Jeonghwan Kim, Utkarsh Mishra, Alex Baratian, Hyeonjeong Ha, Heng Ji, Svetlana Lazebnik, Unnat Jain">
+<meta name="author" content="Dwip Dalal, Shivansh Patel, Chahit Jain, Jeonghwan Kim, Utkarsh Mishra, Yuchen Song, Hyeonjeong Ha, Alex Baratian, Heng Ji, Svetlana Lazebnik, Unnat Jain">
 <meta name="keywords" content="vision-language-action model, VLA, VLA finetuning, VLA generalization, robot learning, robot manipulation, language-conditioned robot manipulation, continual learning, catastrophic forgetting, representation drift, knowledge distillation, out-of-distribution generalization, OOD generalization robotics, language-action alignment, language-action misalignment, language and action prediction, behavior cloning, imitation learning, vision-language model finetuning, embodied AI, OpenVLA, StarVLA, Prismatic VLM, Qwen2.5, xArm7, LIBERO, LIBERO-PRO, LIBERO-Plus, CALVIN, Anchor-Align">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 
@@ -21,8 +21,9 @@
 <meta name="citation_author" content="Jain, Chahit">
 <meta name="citation_author" content="Kim, Jeonghwan">
 <meta name="citation_author" content="Mishra, Utkarsh">
-<meta name="citation_author" content="Baratian, Alex">
+<meta name="citation_author" content="Song, Yuchen">
 <meta name="citation_author" content="Ha, Hyeonjeong">
+<meta name="citation_author" content="Baratian, Alex">
 <meta name="citation_author" content="Ji, Heng">
 <meta name="citation_author" content="Lazebnik, Svetlana">
 <meta name="citation_author" content="Jain, Unnat">
@@ -43,8 +44,9 @@
 <meta name="DC.creator" content="Chahit Jain">
 <meta name="DC.creator" content="Jeonghwan Kim">
 <meta name="DC.creator" content="Utkarsh Mishra">
-<meta name="DC.creator" content="Alex Baratian">
+<meta name="DC.creator" content="Yuchen Song">
 <meta name="DC.creator" content="Hyeonjeong Ha">
+<meta name="DC.creator" content="Alex Baratian">
 <meta name="DC.creator" content="Heng Ji">
 <meta name="DC.creator" content="Svetlana Lazebnik">
 <meta name="DC.creator" content="Unnat Jain">
@@ -88,17 +90,19 @@
   "alternateName": "Anchor-Align",
   "url": "https://anchoralignvla.github.io/",
   "datePublished": "2026-07-15",
+  "dateModified": "2026-09-28",
   "inLanguage": "en",
   "isAccessibleForFree": true,
-  "abstract": "Finetuning a pretrained vision-language model (VLM) on robot demonstrations via behavior cloning (BC) has become the standard recipe for vision-language-action (VLA) policies. However, BC finetuning progressively overwrites the pretrained representations that support visual and semantic generalization. Co-training on web image-text data, a common remedy, does not prevent this; it applies language and action losses to separate observations, leaving VLAs with language-action misalignment that standard manipulation benchmarks do not expose. We propose Anchor-Align, which augments BC with two objectives: Vision-Language Anchoring distills layer-wise representations from a frozen VLM copy to prevent this drift, while Language-Action Alignment converts each action target into a discrete motion-direction label and jointly trains language and action prediction on the same robot observation. On a physical xArm7 robot, across two widely used VLA architectures, Anchor-Align improves real-robot success on both (28% to 54% and 37% to 60%). At scale in simulation, we demonstrate consistent improvements on OOD perturbations, perceptual robustness, and long-horizon control across LIBERO-PRO, LIBERO-Plus, and CALVIN, respectively, suggesting that preserving pretrained representations and effective action learning are not fundamentally at odds.",
+  "abstract": "Finetuning a pretrained vision-language model (VLM) on robot demonstrations via behavior cloning (BC) has become the standard recipe for vision-language-action (VLA) policies. However, BC finetuning progressively overwrites the pretrained representations that support visual and semantic generalization. Co-training on web image-text data, a common remedy, applies language and action losses to separate observations, leaving VLAs with language-action misalignment that standard manipulation benchmarks do not expose. We propose Anchor-Align, which augments BC with two objectives: Vision-Language Anchoring distills layer-wise representations from a frozen VLM copy to prevent this drift, while Language-Action Alignment converts each action target into a discrete motion-direction label and jointly trains language and action prediction on the same robot observation. We conduct real-world evaluations across eight manipulation settings on single-arm xArm7 and bimanual YAM robots, using two VLA architectures with regression and flow-matching action heads. Across these settings, Anchor-Align consistently improves over BC on novel targets, layouts, and motion-sensitive bimanual tasks requiring coordinated control. At scale in simulation, we demonstrate consistent improvements on OOD perturbations, perceptual robustness, and long-horizon control across LIBERO-PRO, LIBERO-Plus, and CALVIN, respectively, suggesting that preserving pretrained representations and effective action learning are not fundamentally at odds.",
   "author": [
     { "@type": "Person", "name": "Dwip Dalal", "url": "https://dwipddalal.github.io/", "sameAs": ["https://scholar.google.com/citations?user=zrGsmv8AAAAJ", "https://github.com/dwipddalal"], "affiliation": { "@type": "Organization", "name": "University of Illinois Urbana-Champaign" } },
     { "@type": "Person", "name": "Shivansh Patel", "url": "https://shivanshpatel35.github.io/", "affiliation": { "@type": "Organization", "name": "University of Illinois Urbana-Champaign" } },
     { "@type": "Person", "name": "Chahit Jain", "affiliation": { "@type": "Organization", "name": "University of Illinois Urbana-Champaign" } },
     { "@type": "Person", "name": "Jeonghwan Kim", "url": "https://wjdghks950.github.io/", "affiliation": { "@type": "Organization", "name": "University of Illinois Urbana-Champaign" } },
     { "@type": "Person", "name": "Utkarsh Mishra", "url": "https://utkarsh-mishra444.github.io/", "affiliation": { "@type": "Organization", "name": "Texas A&M University" } },
-    { "@type": "Person", "name": "Alex Baratian", "affiliation": { "@type": "Organization", "name": "University of Illinois Urbana-Champaign" } },
+    { "@type": "Person", "name": "Yuchen Song", "url": "https://yuchen-song.github.io/", "affiliation": { "@type": "Organization", "name": "University of California, Irvine" } },
     { "@type": "Person", "name": "Hyeonjeong Ha", "url": "https://hyeonjeongha.github.io/", "affiliation": { "@type": "Organization", "name": "University of Illinois Urbana-Champaign" } },
+    { "@type": "Person", "name": "Alex Baratian", "affiliation": { "@type": "Organization", "name": "University of Illinois Urbana-Champaign" } },
     { "@type": "Person", "name": "Heng Ji", "url": "https://blender.cs.illinois.edu/hengji.html", "affiliation": { "@type": "Organization", "name": "University of Illinois Urbana-Champaign" } },
     { "@type": "Person", "name": "Svetlana Lazebnik", "url": "https://slazebni.cs.illinois.edu/", "affiliation": { "@type": "Organization", "name": "University of Illinois Urbana-Champaign" } },
     { "@type": "Person", "name": "Unnat Jain", "url": "https://unnat.github.io/", "affiliation": { "@type": "Organization", "name": "University of California, Irvine" } }
@@ -213,7 +217,7 @@
         "height": 630
       },
       "datePublished": "2026-07-15",
-      "dateModified": "2026-08-27",
+      "dateModified": "2026-10-24",
       "inLanguage": "en"
     }
   ]
@@ -270,8 +274,9 @@
     <a class="author" href="https://www.linkedin.com/in/chahitj/" target="_blank" rel="noopener">Chahit Jain</a><sup>1</sup>,
     <a class="author" href="https://wjdghks950.github.io/" target="_blank" rel="noopener">Jeonghwan Kim</a><sup>1</sup>,
     <a class="author" href="https://utkarsh-mishra444.github.io/" target="_blank" rel="noopener">Utkarsh Mishra</a><sup>2</sup>,
-    <a class="author" href="https://www.linkedin.com/in/alexbaratian/" target="_blank" rel="noopener">Alex Baratian</a><sup>1</sup>,
+    <a class="author" href="https://yuchen-song.github.io/" target="_blank" rel="noopener">Yuchen Song</a><sup>3</sup>,
     <a class="author" href="https://hyeonjeongha.github.io/" target="_blank" rel="noopener">Hyeonjeong Ha</a><sup>1</sup>,<br>
+    <a class="author" href="https://www.linkedin.com/in/alexbaratian/" target="_blank" rel="noopener">Alex Baratian</a><sup>1</sup>,
     <a class="author" href="https://blender.cs.illinois.edu/hengji.html" target="_blank" rel="noopener">Heng Ji</a><sup>1</sup>,
     <a class="author" href="https://slazebni.cs.illinois.edu/" target="_blank" rel="noopener">Svetlana Lazebnik</a><sup>1*</sup>,
     <a class="author" href="https://unnat.github.io/" target="_blank" rel="noopener">Unnat Jain</a><sup>3*</sup>
@@ -317,7 +322,7 @@
     cloning (BC) has become the standard recipe for vision-language-action (VLA) policies.
     However, BC finetuning progressively overwrites the pretrained representations that support
     visual and semantic generalization. Co-training on web image-text data, a common remedy,
-    does not prevent this; it applies language and action losses to separate observations,
+    applies language and action losses to separate observations,
     leaving VLAs with language-action misalignment that standard manipulation benchmarks do
     not expose.
   </p>
@@ -342,6 +347,12 @@
 
 <section id="method" class="section">
   <h2>Method overview</h2>
+  <p>
+    Vision-Language Anchoring distills representations from a frozen pretrained VLM into the
+    trainable VLA at every transformer layer, preventing catastrophic forgetting. Under standard
+    BC the policy loses 94% of its GQA accuracy within 10K steps, whereas Anchor-Align retains
+    roughly 65% of the pretrained accuracy.
+  </p>
   <figure class="fig">
     <video class="vid fig-vid" muted playsinline preload="none" autoplay data-src="static/videos/main_fig.mp4"></video>
     <figcaption>
@@ -1004,7 +1015,7 @@
   <h2>BibTeX</h2>
 <pre class="bib">@article{dalal2026anchoralign,
   title   = {Generalizable VLA Finetuning via Representation Anchoring and Language-Action Alignment},
-  author  = {Dalal, Dwip and Patel, Shivansh and Jain, Chahit and Kim, Jeonghwan and Mishra, Utkarsh and Baratian, Alex and Ha, Hyeonjeong and Ji, Heng and Lazebnik, Svetlana and Jain, Unnat},
+  author  = {Dalal, Dwip and Patel, Shivansh and Jain, Chahit and Kim, Jeonghwan and Mishra, Utkarsh and Song, Yuchen and Ha, Hyeonjeong and Baratian, Alex and Ji, Heng and Lazebnik, Svetlana and Jain, Unnat},
   journal = {arXiv preprint arXiv:2607.13429},
   year    = {2026}
 }</pre>
