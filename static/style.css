@@ -861,8 +861,17 @@ hr {
 .vid.vid-native { aspect-ratio: 1444 / 720; object-fit: contain; }
 
 /* YAM videos side by side at equal height: 16:9 (Reactive Grasp) next to 2:1 (Tomato Plate Transfer) */
-.rw-motion-row { display: grid; grid-template-columns: 1fr 1.125fr; gap: 14px; align-items: end; margin-top: 10px; }
+.rw-motion-row { display: grid; grid-template-columns: 1fr 1.125fr; gap: 6px 14px; align-items: end; margin-top: 10px; }
 .rw-motion-vid { margin: 0; }
 .rw-motion-vid figcaption { margin: 0 0 6px; font-size: 13px; font-weight: 600; letter-spacing: .02em; color: var(--muted); }
 .rw-motion-vid figcaption.ours { color: #15803d; }
-@media (max-width: 720px) { .rw-motion-row { grid-template-columns: 1fr; } }
+/* each prompt sits in the row under its own video */
+.rw-motion-prompt { margin: 0; align-self: start; }
+@media (max-width: 720px) {
+  .rw-motion-row { grid-template-columns: 1fr; }
+  /* single column: put each prompt right after its video */
+  .rw-motion-row > :nth-child(1) { order: 1; }
+  .rw-motion-row > :nth-child(3) { order: 2; margin-bottom: 10px; }
+  .rw-motion-row > :nth-child(2) { order: 3; }
+  .rw-motion-row > :nth-child(4) { order: 4; }
+}
