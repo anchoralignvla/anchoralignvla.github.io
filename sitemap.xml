@@ -4,7 +4,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://anchoralignvla.github.io/</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -39,7 +39,7 @@
     </image:image>
     <video:video>
       <video:thumbnail_loc>https://anchoralignvla.github.io/static/images/og_thumb.jpg</video:thumbnail_loc>
-      <video:title>Anchor-Align teaser: preventing catastrophic forgetting in VLA finetuning for robot manipulation</video:title>
+      <video:title>Anchor-Align teaser: generalizable VLA finetuning for robot manipulation</video:title>
       <video:description>Narrated overview of Anchor-Align. Behavior cloning causes catastrophic forgetting of pretrained VLM representations; Vision-Language Anchoring and Language-Action Alignment restore out-of-distribution generalization on a UFactory xArm7 robot, LIBERO-PRO, LIBERO-Plus and CALVIN.</video:description>
       <video:content_loc>https://anchoralignvla.github.io/static/videos/anchor_align_teaser.mp4</video:content_loc>
       <video:duration>157</video:duration>

@@ -6,7 +6,7 @@
 <link rel="icon" type="image/svg+xml" href="static/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32.png">
 <link rel="apple-touch-icon" href="static/apple-touch-icon.png">
-<title>Anchor-Align: Preventing Catastrophic Forgetting in VLA Finetuning</title>
+<title>Anchor-Align: Generalizable VLA Finetuning via Representation Anchoring and Language-Action Alignment</title>
 <meta name="description" content="Anchor-Align prevents catastrophic forgetting in VLA finetuning: it keeps the pretrained VLM representations that behavior cloning erases and aligns language with action, improving OOD generalization on xArm7 and bimanual YAM robots, LIBERO-PRO, LIBERO-Plus and CALVIN.">
 <link rel="canonical" href="https://anchoralignvla.github.io/">
 <meta name="google-site-verification" content="KWzJKx3HGmc7Ejwre96FWcytnGifcuwktjMuJC3JFK4" />
@@ -90,7 +90,7 @@
   "alternateName": "Anchor-Align",
   "url": "https://anchoralignvla.github.io/",
   "datePublished": "2026-07-15",
-  "dateModified": "2026-09-28",
+  "dateModified": "2026-10-28",
   "inLanguage": "en",
   "isAccessibleForFree": true,
   "abstract": "Finetuning a pretrained vision-language model (VLM) on robot demonstrations via behavior cloning (BC) has become the standard recipe for vision-language-action (VLA) policies. However, BC finetuning progressively overwrites the pretrained representations that support visual and semantic generalization. Co-training on web image-text data, a common remedy, applies language and action losses to separate observations, leaving VLAs with language-action misalignment that standard manipulation benchmarks do not expose. We propose Anchor-Align, which augments BC with two objectives: Vision-Language Anchoring distills layer-wise representations from a frozen VLM copy to prevent this drift, while Language-Action Alignment converts each action target into a discrete motion-direction label and jointly trains language and action prediction on the same robot observation. We conduct real-world evaluations across eight manipulation settings on single-arm xArm7 and bimanual YAM robots, using two VLA architectures with regression and flow-matching action heads. Across these settings, Anchor-Align consistently improves over BC on novel targets, layouts, and motion-sensitive bimanual tasks requiring coordinated control. At scale in simulation, we demonstrate consistent improvements on OOD perturbations, perceptual robustness, and long-horizon control across LIBERO-PRO, LIBERO-Plus, and CALVIN, respectively, suggesting that preserving pretrained representations and effective action learning are not fundamentally at odds.",
@@ -143,7 +143,7 @@
   "@context": "https://schema.org",
   "@type": "VideoObject",
   "@id": "https://anchoralignvla.github.io/#teaser",
-  "name": "Anchor-Align teaser: preventing catastrophic forgetting in VLA finetuning for robot manipulation",
+  "name": "Anchor-Align teaser: generalizable VLA finetuning for robot manipulation",
   "description": "Narrated overview of Anchor-Align. Behavior cloning causes catastrophic forgetting of pretrained VLM representations; Vision-Language Anchoring and Language-Action Alignment restore out-of-distribution generalization on a UFactory xArm7 robot, LIBERO-PRO, LIBERO-Plus and CALVIN.",
   "thumbnailUrl": [
     "https://anchoralignvla.github.io/static/images/og_thumb.jpg"
@@ -197,7 +197,7 @@
       "@type": "WebPage",
       "@id": "https://anchoralignvla.github.io/#webpage",
       "url": "https://anchoralignvla.github.io/",
-      "name": "Anchor-Align: Preventing Catastrophic Forgetting in VLA Finetuning",
+      "name": "Anchor-Align: Generalizable VLA Finetuning via Representation Anchoring and Language-Action Alignment",
       "isPartOf": {
         "@id": "https://anchoralignvla.github.io/#website"
       },
@@ -217,7 +217,7 @@
         "height": 630
       },
       "datePublished": "2026-07-15",
-      "dateModified": "2026-10-24",
+      "dateModified": "2026-10-31",
       "inLanguage": "en"
     }
   ]
@@ -240,7 +240,7 @@
     <a class="sub" href="#rw-mugplate">&middot; 🔀 Spatial: Green Mug</a>
     <a class="sub" href="#rw-compositional">&middot; 🧩 Spatial: Broccoli</a>
     <a class="sub" href="#rw-clutter">&middot; 🧺 Grounding in Clutter</a>
-    <a class="sub" href="#rw-motion">&middot; 🤲 Motion &amp; Stability (YAM)</a>
+    <a class="sub" href="#rw-motion">&middot; 🤲 Bimanual Coordination (YAM)</a>
   </div>
   <div class="sidenav-cat">Simulation</div>
   <a href="#liberoplus" class="top">LIBERO-Plus</a>
@@ -378,7 +378,7 @@
     <li><strong>Target Generalization (OOD)</strong> on the single-arm xArm7: the language-specified target changes at test time (<em>Pink Mug Placement</em>, <em>Cable Insertion</em>).</li>
     <li><strong>Spatial Generalization (OOD)</strong> on the xArm7: objects and distractors are moved to configurations unseen in training (<em>Broccoli Placement</em>, <em>Green Mug Placement</em>).</li>
     <li><strong>Target Grounding in Clutter</strong> on the xArm7: the policy must pick the language-specified object from among multiple distractors (<em>Clutter Scene</em>).</li>
-    <li><strong>Motion Understanding and Stability</strong> on the 14-DoF bimanual YAM: tasks that require reactive execution and coordinated motion across both arms (<em>Reactive Grasp</em>, <em>Tomato Plate Transfer</em>).</li>
+    <li><strong>Bimanual Coordination</strong> on the 14-DoF bimanual YAM: tasks that require reactive execution and coordinated motion across both arms (<em>Reactive Grasp</em>, <em>Tomato Plate Transfer</em>).</li>
   </ol>
 
   <div class="rw-graphs">
@@ -395,7 +395,7 @@
       <a href="static/images/realworld/fig_clutter_results.png" target="_blank" rel="noopener" title="Open full-size graph"><img loading="lazy" src="static/images/realworld/fig_clutter_results.png" alt="Bar chart: Standard BC vs Anchor-Align success on Clutter Scene with VLA-Adapter and StarVLA"></a>
     </figure>
     <figure class="rw-graph">
-      <figcaption><span class="rw-num">4</span><span class="rw-title">Motion &amp; Stability</span><span class="rw-meta">bimanual YAM · VLA-Adapter</span></figcaption>
+      <figcaption><span class="rw-num">4</span><span class="rw-title">Bimanual Coordination</span><span class="rw-meta">bimanual YAM · VLA-Adapter</span></figcaption>
       <a href="static/images/realworld/fig_yam_results.png" target="_blank" rel="noopener" title="Open full-size graph"><img loading="lazy" src="static/images/realworld/fig_yam_results.png" alt="Bar chart: Standard BC vs Anchor-Align on YAM for Reactive Grasp, and plate placement and tomato retention on Tomato Plate Transfer and its OOD variant"></a>
     </figure>
   </div>
@@ -529,7 +529,7 @@
     <video class="vid" muted loop playsinline preload="none" controls data-speed="2" data-src="static/videos/realworld/clutter_evals/clutter_anch_17500/trial6_red_bp.mp4"></video>
   </div>
 </div>
-<h3 id="rw-motion" class="sub">🤲 Motion Understanding and Stability (bimanual YAM)</h3>
+<h3 id="rw-motion" class="sub">🤲 Bimanual Coordination (YAM)</h3>
 <p class="caption">Two tasks on the 14-DoF bimanual YAM that require reactive execution and coordinated motion across both arms; the Language-Action Alignment loss is applied to each arm independently, with a separate motion-direction label for each. <em>Reactive Grasp</em>: the robot must intercept and grasp a bottle carried by a moving person, adapting its reach and gripper closure to the target&rsquo;s motion. <em>Tomato Plate Transfer</em>: the robot must lift a plate carrying eight tomatoes and transport it onto a box while keeping a level grasp and smooth motion, since a height mismatch between the arms tilts the plate and abrupt motion makes the tomatoes roll off. <em>Tomato Plate Transfer (OOD)</em> repeats the task under an unseen visual configuration, with the box covered in white paper and the workspace walls removed.</p>
 <div class="rw-motion-row">
   <figure class="rw-motion-vid">

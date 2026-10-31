@@ -2,7 +2,7 @@
 
 > Anchor-Align is a finetuning method for vision-language-action (VLA) models that prevents catastrophic forgetting: it stops behavior cloning from overwriting the pretrained vision-language representations that support visual and semantic generalization. It adds two objectives to standard BC: Vision-Language Anchoring (layer-wise distillation from a frozen VLM copy) and Language-Action Alignment (joint language and action prediction on the same robot observation). Across eight real-world manipulation settings on single-arm xArm7 and bimanual YAM robots, with two VLA architectures (regression and flow-matching action heads), Anchor-Align consistently improves over behavior cloning, with consistent gains on LIBERO-PRO, LIBERO-Plus, and CALVIN.
 
-Paper: arXiv:2607.13429 (cs.RO, cs.CV), first posted 15 July 2026, v2 28 September 2026.
+Paper: arXiv:2607.13429 (cs.RO, cs.CV), first posted 15 July 2026, latest version v3 28 October 2026.
 Authors: Dwip Dalal, Shivansh Patel, Chahit Jain, Jeonghwan Kim, Utkarsh Mishra, Yuchen Song, Hyeonjeong Ha, Alex Baratian, Heng Ji, Svetlana Lazebnik, Unnat Jain (University of Illinois Urbana-Champaign; Texas A&M University; University of California, Irvine).
 
 ## Problem addressed
